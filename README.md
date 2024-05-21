@@ -2,6 +2,7 @@
 - Ian Estevez
 - Daniel Tribaldos
 - Lucas Hardeman
+- Amisaday Santiago
 
 ## Project Topic:
    Car finder application
