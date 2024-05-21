@@ -1,4 +1,5 @@
 # Group Members:
+- Ian Estevez
 - Daniel Tribaldos
 - Lucas Hardeman
 
