@@ -3,6 +3,7 @@
 - Daniel Tribaldos
 - Lucas Hardeman
 - Amisaday Santiago
+- Elizabeth Sauer
 
 ## Project Topic:
    Car finder application
