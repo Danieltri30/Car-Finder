@@ -4,6 +4,7 @@
 - Lucas Hardeman
 - Amisaday Santiago
 - Elizabeth Sauer
+- Benjohn Shung
 
 ## Project Topic:
    Car finder application
