@@ -1,5 +1,6 @@
 # Group Members:
 - Daniel Tribaldos
+- Lucas Hardeman
 
 ## Project Topic:
    Car finder application
