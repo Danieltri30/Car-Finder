@@ -1,0 +1,36 @@
+<html><head>
+    <title>Cars Posted</title>
+</head>
+<body>
+    <h1>Cars Posted</h1>
+    
+            {% for car in clist %}
+                
+            {% endfor %}
+        <table border="1">
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Manufacturer</th>
+		<th>Price </th>
+		<th>Type </th>
+		<th>Mileage </th>
+		<th>Transmission </th>
+		<th>Fuel Type </th>
+            </tr>
+        </thead>
+        <tbody><tr>
+                    <td>{{ car.model }}</td>
+                    <td>{{ car.color }}</td>
+                    <td>{{ car.manufacturer }}</td>
+		    <td>{{ car.price }} </td>
+		    <td>{{ car.car_type }} </td>
+		    <td>{{ car.transmission_type }} </td>
+		    <td>{{ car.fuel_type }} </td>
+		    <td>{{ car.title }} </td>
+                </tr></tbody>
+    </table>
+
+
+</body></html>
