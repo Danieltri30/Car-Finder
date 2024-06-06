@@ -1,35 +1,71 @@
 <!-- May try to include images when i have time to figure that out -->
-<html><head>
+<html>
+<head>
     <title>Cars Posted</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        thead {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Cars Posted</h1>
-        <table border="1">
+    <table border="1">
         <thead>
             <tr>
                 <th>Model</th>
                 <th>Color</th>
                 <th>Manufacturer</th>
-		<th>Price </th>
-		<th>Type </th>
-		<th>Mileage </th>
-		<th>Transmission </th>
-		<th>Fuel Type </th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Mileage</th>
+                <th>Transmission</th>
+                <th>Fuel Type</th>
             </tr>
         </thead>
-        <tbody><tr>
-		{% for car in clist %}
-                    <td>{{ car.model }}</td>
-                    <td>{{ car.color }}</td>
-                    <td>{{ car.manufacturer }}</td>
-		    <td>{{ car.price }} </td>
-		    <td>{{ car.car_type }} </td>
-		    <td>{{ car.transmission_type }} </td>
-		    <td>{{ car.fuel_type }} </td>
-		    <td>{{ car.title }} </td>
-		{% endfor %}
-                </tr></tbody>
+        <tbody>
+            {% for car in clist %}
+            <tr>
+                <td>{{ car.model }}</td>
+                <td>{{ car.color }}</td>
+                <td>{{ car.manufacturer }}</td>
+                <td>{{ car.price }}</td>
+                <td>{{ car.car_type }}</td>
+                <td>{{ car.mileage }}</td>
+                <td>{{ car.transmission_type }}</td>
+                <td>{{ car.fuel_type }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
+</body>
+</html>
 
 
 </body></html>
