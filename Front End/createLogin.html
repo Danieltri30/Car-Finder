@@ -1,4 +1,24 @@
-<html><head></head><body>
+<html><head>
+</head>
+<style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h3 {
+            margin: 0;
+            padding: 20px;
+        }
+
+</style>
+
+<body>
+
 
       <form action="{{ url_for('createlogin') }}" method="POST">
          <h3>Create Account:</h3>
