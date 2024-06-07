@@ -1,0 +1,68 @@
+<!--as far as delete goes i was thinking that we just list all the cars under a certain name and then have them choose the index of that car, once they hit submit the query runs-->
+<html><head>
+</head>
+<style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h3 {
+            margin: 0;
+            padding: 20px;
+        }
+	h1 {
+	    margiun: 0;
+	    padding: 20px;
+	}
+
+</style>
+
+<body>
+
+    <h1>Your Cars</h1>
+    <table border="1">
+        <thead>
+            <tr>
+		<th>Choice</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Manufacturer</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Mileage</th>
+                <th>Transmission</th>
+                <th>Fuel Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in clist %}
+            <tr>
+		<td>{{ forloop.counter }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.color }}</td>
+                <td>{{ car.manufacturer }}</td>
+                <td>{{ car.price }}</td>
+                <td>{{ car.car_type }}</td>
+                <td>{{ car.mileage }}</td>
+                <td>{{ car.transmission_type }}</td>
+                <td>{{ car.fuel_type }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+      <form action="{{ url_for('deletecar') }}" method="POST">
+         <h3>Submit Item Number to Delete:</h3>
+
+         First Name:<br>
+         <input type ="number" name = "index"></input><br>
+
+         <input type="submit" value="submit"><br>
+      </form>
+
+</body></html>
