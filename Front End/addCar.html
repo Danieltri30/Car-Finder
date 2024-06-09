@@ -19,21 +19,40 @@
          <input type="text" name="typeofcar"><br>
 
          Miles per Gallon<br>
-         <input type="text" name="mpg"><br>
+         <input type="number" name="mpg"><br>
 
          Transmission<br>
-         <input type="text" name="transmission"><br>
+        <select name="transmission" id="transmission">
+        <option value="new">Manual</option>
+        <option value="used">Automatic</option>
+	<option value="used">Hybrid</option>
+            </select> </br>
 
          Fuel Type<br>
-         <input type="text" name="fueltype"><br>
+        <select name="fuel_type" id="fuel_type">
+        <option value="new">Electic</option>
+        <option value="used">Unleaded</option>
+	<option value="used">Diesel</option>
+            </select> </br>
 
-	   Upload Picture<br>
-          <input type="file" accept="image/*"> <br>
+	 Usage<br>
+	 <select name="usage" id="usage">
+        <option value="new">New</option>
+        <option value="used">Used</option>
+            </select> </br>
+
+    
+
+	Upload Picture<br>
+	<input type="file" accept="image/*"> <br>
+
 
 
          <input type="submit" value="submit"><br>
       </form>
       
+   
+
 
 
 
