@@ -1,0 +1,121 @@
+<html><head>
+</head>
+<style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h3 {
+            margin: 0;
+            padding: 20px;
+        }
+	h1 {
+	    margin: 0;
+	    padding: 20px;
+	}
+        label {
+            margin: 5px 0;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+        }
+
+
+</style>
+
+<body>
+
+    <h1>Cars</h1>
+    <table border="1">
+        <thead>
+            <tr>
+		<th>Choice</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Manufacturer</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Mileage</th>
+                <th>Transmission</th>
+                <th>Fuel Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in clist %}
+            <tr>
+		<td>{{ forloop.counter }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.color }}</td>
+                <td>{{ car.manufacturer }}</td>
+                <td>{{ car.price }}</td>
+                <td>{{ car.car_type }}</td>
+                <td>{{ car.mileage }}</td>
+                <td>{{ car.transmission_type }}</td>
+                <td>{{ car.fuel_type }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+      <form action="{{ url_for('updatecar') }}" method="POST">
+         <h3>Submit Item Number to Update:</h3>
+
+         Item:<br>
+         <input type ="number" name = "index"></input><br>
+
+
+
+    <h3>Select Car Attribute to Update:</h3>
+        <label>
+            <input type="radio" name="car_attribute" value="image" required>
+            Image
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="model">
+            Model
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="color">
+            Color
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="manufacturer">
+            Manufacturer
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="price">
+            Price
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="type">
+            Type
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="mileage">
+            Mileage
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="transmission">
+            Transmission
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="fuel_type">
+            Fuel Type
+        </label>
+
+
+	New Value:<br>
+         <input type ="text" name = "toupdate"></input><br>
+
+
+         <input type="submit" value="submit"><br>
+      </form>
+
+</body></html>
