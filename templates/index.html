@@ -3,59 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Three Column Layout</title>
+  <title>CarFinder</title>
   <style>
     .container {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
+    	display: flex;
+    	flex-direction: column;
+    	height: 100vh;
     }
  
     .top {
-      flex: 0 0 auto; 
-      background-color: blue;
-      color: white;
-      padding: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    	flex: 0 0 auto; 
+    	background-color: blue;
+    	color: white;
+    	padding: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
     }
     
     .side {
-      flex: 0 0 100px;
-      background-color: grey;
-      padding: 10px;
+    	flex: 0 0 100px;
+    	background-color: grey;
+    	padding: 10px;
     }
 
     .middle {
-      flex: 1; 
-      background-color:  white;
-      padding: 10px;
+    	flex: 1; 
+    	background-color:  white;
+    	padding: 10px;
     }
     
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
+    	margin: 0;
+    font-family: Arial, sans-serif;
     }
 
-.center{
+	.center{
     	position: fixed;
-	height: 200px;
-	width: 400px;
-	top: 20%;
-	left: 50%
-	transform: translate(-50%, -50%);
-	text-align: center;
-}
-
-
+		height: 200px;
+		width: 400px;
+		top: 20%;
+		left: 50%
+		transform: translate(-50%, -50%);
+		text-align: center;
+	}
   </style>
-
-
 </head>
+
 <body>
   <div class="container">
-    <div class="top">TITLE</div>
+    <div class="top">CarFinder</div>
     <div style="display: flex;">
       <div class="side">Left Column</div>
       <div class="middle">Middle Content
@@ -110,7 +107,8 @@
 	</div>
 
 </div>
-      <div class="side">Right Column</div>
+      <div class="side"><a href = "/carsPosted">Cars For Sale</a></div>
+	  <div class="side"><a href = "/login">Log In</a></div>
     </div>
   </div>
 </body>

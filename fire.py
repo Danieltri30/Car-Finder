@@ -1,10 +1,10 @@
-#FIrebase backened as service
+#Firebase backened as service
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
 
 #Fetch service account key JSON file contents
-cred = credentials.Certificate("path/to/serviceAccountKey.json")
+cred = credentials.Certificate("serviceAccountKey.json")
 
 #Init app with service account, grant admin privleges 
 firebase_admin.initialize_app(cred, {
