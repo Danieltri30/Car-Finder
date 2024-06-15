@@ -19,7 +19,6 @@
    How to compile & run project:
    - In the project's directory, using the command line, run
    ```bash
-   python3 fire.py
    python3 app.py
    ```
 
