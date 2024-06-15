@@ -45,28 +45,34 @@
         <thead>
             <tr>
                 <th>Image</th>
+                <th>Make</th>
                 <th>Model</th>
+                <th>Year</th>
                 <th>Color</th>
-                <th>Manufacturer</th>
-                <th>Price</th>
-                <th>Type</th>
                 <th>Mileage</th>
-                <th>Transmission</th>
-                <th>Fuel Type</th>
+                <th>MPG</th>
+                <th>Transmission</th>  
+                <th>Fuel Type</th>   
+                <th>Body Style</th>      
+                <th>Condition</th>                                     
+                <th>Price</th>
             </tr>
         </thead>
         <tbody>
             {% for car in clist %}
             <tr>
-                <td><img src="{{ car.image_url }}" alt="{{ car.model }}"></td>
-                <td>{{ car.model }}</td>
-                <td>{{ car.color }}</td>
-                <td>{{ car.manufacturer }}</td>
-                <td>{{ car.price }}</td>
-                <td>{{ car.car_type }}</td>
-                <td>{{ car.mileage }}</td>
-                <td>{{ car.transmission_type }}</td>
-                <td>{{ car.fuel_type }}</td>
+                <td><img src="{{ car.image_url }}" alt="{{ car['Model'] }}"></td>
+                <td>{{ car['Make'] }}</td>
+                <td>{{ car['Model'] }}</td>
+                <td>{{ car['Year'] }}</td>
+                <td>{{ car['Color'] }}</td>
+                <td>{{ car['Mileage'] }}</td>
+                <td>{{ car['MPG'] }}</td>
+                <td>{{ car['Transmission'] }}</td>
+                <td>{{ car['Fuel'] }}</td>
+                <td>{{ car['Type'] }}</td>
+                <td>{{ car['NorU'] }}</td>
+                <td>{{ car['Price'] }}</td>
             </tr>
             {% endfor %}
         </tbody>

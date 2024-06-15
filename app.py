@@ -24,10 +24,12 @@ def login():
 
 @app.route('/carsPosted', methods = ['GET'])
 def carsPosted():
-    return render_template('carsPosted.html')
+    clist = fire.get_all_cars()
+    return render_template('carsPosted.html', clist=clist)
 
 @app.route('/addCar', methods = ['POST', 'GET'])
 def addCar():
+    
     return render_template('addCar.html')
 
 @app.route('/deleteCar', methods = ['POST', 'GET'])

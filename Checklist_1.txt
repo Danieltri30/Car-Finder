@@ -4,21 +4,21 @@ Thursday, May 2024
 1 First Check Goals
 • Create our python class which will house specific attributes of our cars
 • Specific attributes I can think of include:
-– Model
-– Color
-– Manufacturer
-– Price
-– Type of car (SUV, SEDAN, etc.)
-– Used vs New car
-– Mileage on the car
-– Miles per gallon
-– The closest dealership selling said car
-– Transmission Type (Manual, automatic, Hybrid)
-– Fuel type (electric, gas, hybrid)
+    – Model
+    – Color
+    – Manufacturer
+    – Price
+    – Type of car (SUV, SEDAN, etc.)
+    – Used vs New car
+    – Mileage on the car
+    – Miles per gallon
+    – The closest dealership selling said car
+    – Transmission Type (Manual, automatic, Hybrid)
+    – Fuel type (electric, gas, hybrid)
 • We should create a class with capabilities of containing all of this within
 the class
 • Goals in regards to our database:
-– We will be using Firebase as our database management application
-– We should learn how to navigate Firebase by the end of the week
-– We should think about and create all needed tables for our database
-– We should connect our database to our web application code
+    – We will be using Firebase as our database management application
+    – We should learn how to navigate Firebase by the end of the week
+    – We should think about and create all needed tables for our database
+    – We should connect our database to our web application code
