@@ -1,21 +1,118 @@
 
-<html>
-    <head></head>
-    <body>
-    <h1> Hello </h1>
-    <h2>
-    <a href = "/carsPosted">Cars For Sale</a>
-    </h2>
-    <h2>
-    <a href = "/addCar">Post a Car</a>
-    </h2>
-    <h2>
-    <a href = "/updateCar">Update a Car</a> <!--page not made yet-->
-    </h2>
-    <h2>
-    <a href = "/deleteCar">Remove a Car</a>
-    </h2>
-    </h2>				<!--maybe this can be used for the employees-->
-        <a href="/">Home</a>
-    </body>
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CarFinder</title>
+  <style>
+    .container {
+    	display: flex;
+    	flex-direction: column;
+    	height: 100vh;
+    }
+ 
+    .top {
+    	flex: 0 0 auto; 
+    	background-color: blue;
+    	color: white;
+    	padding: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+    }
+    
+    .side {
+    	flex: 0 0 auto;
+    	background-color: grey;
+    	padding: 10px;
+	flex-direction: column;
+    }
+
+    .middle {
+    	flex: 1; 
+    	background-color:  white;
+    	padding: 10px;
+    }
+    
+    body {
+    	margin: 0;
+    font-family: Arial, sans-serif;
+    }
+
+	.center{
+    	position: fixed;
+		height: 200px;
+		width: 400px;
+		top: 30%;
+		left: 45%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+	}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top">CarFinder</div>
+    <div style="display: flex;">
+      <div class="side">Left Column</div>
+      <div class="middle">Middle Content
+	<div class = "center">
+		<form action = "">
+			<input type = "checkbox" id = "price" name = "price" value = "price">
+			<label for = "price">Price </label>
+			<br>
+			<input type = "checkbox" id = "model" name = "model" value = "model">
+			<label for = "model">Model </label>
+			<br>
+			<input type = "checkbox" id = "color" name = "color" value = "color">
+			<label for = "color">Color </label>
+			<br>
+			<input type = "checkbox" id = "miles" name = "miles" value = "miles">
+			<label for = "miles">Miles Per Gallon </label>
+			<br>
+			<input type = "checkbox" id = "type" name = "type" value = "type">
+			<label for = "type"> Type of Car </label>
+			<br>
+
+			<input type = "checkbox" id = "manufacturer" name = "manufacturer" value = "manufacturer">
+			<label for = "manufacturer"> Manufacturer </label>
+
+			<br>
+			<label for = "usage"> Usage: </label>
+				<select name = "usage" id = "usage">
+				<option value = "new">New </option>
+				<option value = "used"> Used </option>
+				</select>
+			<br>
+			<label for = "transmission"> Transmission Type: </label>
+				<select name = "transmission" id = "transmission">
+				<option value = "manual">Manual </option>
+				<option value = "auto"> Automatic </option>
+				<option value = "semiauto"> Hybrid </option>
+				</select>
+			<br>
+			<label for = "fuel"> Fuel Type: </label>
+				<select name = "fuel" id = "fuel">
+				<option value = "electric">Electric </option>
+				<option value = "diesel"> Diesel </option>
+				<option value = "hybrid"> Hybrid </option>
+				</select>
+			<br>
+
+
+
+			<input type = "submit" value = "Submit">
+			<br>			
+		</form>
+	</div>
+
+</div>
+      <div class="side"><a href = "/carsPosted">Cars For Sale</a></div>
+	<div class = "side"><a href = "/updateCar"> Update a Car</a></div>
+	<div class = "side"><a href = "/deleteCar"> Remove a car</a></div>
+    </div>
+  </div>
+</body>
+</html>
