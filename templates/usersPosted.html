@@ -1,0 +1,67 @@
+<html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        thead {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 20px;
+        }
+
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cars Posted</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in clist %} <!--this probably needs to be changed based off however it is stored-->
+            <tr>
+                <td>{{ employee['First'] }}</td>
+                <td>{{ employee['Last'] }}</td>
+                <td>{{ employee['Email'] }}</td>
+                <td>{{ employee['Uname'] }}</td>
+                <td>{{ employee['Pword'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Home</a>
+</body>
+</html>
