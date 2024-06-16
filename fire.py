@@ -13,6 +13,8 @@ db = firestore.client()
 
 #BELOW WILL BE FUNCTIONS TO DO CRUD WITHIN DATABASE
 
+
+
 #CREATE
 # will be used to add new cars to DB
 def add_car(make, model, year, color, mileage, mpg, transmission, fueltype, bodystyle, noru, price):
@@ -89,5 +91,33 @@ def deleteCar(carID):
         print(f"Car with the id {carID} has sucessfully been deleted")
     except Exception as e:
         print(f"Error: Unable to delete car.{e}")
+
+
+def adduser(username,password,perms):
+    try:
+        # Set the database cursor to the document containing all cars in the database
+        db_cursor = db.collection('users').document()
+        
+        new_user = {
+            'username' : username,
+            'password' : password,
+            'perms' : perms
+        }
+        
+        # Create a new document for the new car containing its fields and information
+        db_cursor.set(new_user)
+        # Return the id of the document representing the id of the newly added car
+        return db_cursor.id
+    except Exception as e:
+        print(f"Error: unable to add the user to the database. {e}")
+        return None
+    
+def deleteUser(username):
+    user = db.collection('user').document(username) 
+    try:
+        user.delete()
+        print(f"User with the username :  {username} has sucessfully been deleted")
+    except Exception as e:
+        print(f"Error: Unable to delete user.{e}")    
 
 #END OF CRUD CODE FOR THE LIST OF CARS DATABASE
