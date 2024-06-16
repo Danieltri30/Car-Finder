@@ -40,6 +40,19 @@ def deleteCar():
 def updateCar():
     return render_template('updateCar.html')
 
+@app.route('/addUser', methods = ['POST', 'GET'])
+def addUser():
+    x = 5       # placeholder until html page is added 
+
+@app.route('/deleteUser', methods = ['POST', 'GET'])
+def deleteUser():
+      x = 5 # placeholder until html page is added
+
+@app.route('/usersPosted', methods = ['GET'])
+def usersPosted():
+    ulist = fire.get_all_users()
+    #return render_template('carsPosted.html', clist=clist)    Placeholder until front end is completed  
+
 
 if __name__ == "__main__":
     app.run(debug=True)
