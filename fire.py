@@ -104,9 +104,9 @@ def adduser(username,password,perms):
             'perms' : perms
         }
         
-        # Create a new document for the new car containing its fields and information
+        # Create a new document for the new user containing its fields and information
         db_cursor.set(new_user)
-        # Return the id of the document representing the id of the newly added car
+        # Return the id of the document representing the id of the newly added user
         return db_cursor.id
     except Exception as e:
         print(f"Error: unable to add the user to the database. {e}")
@@ -118,6 +118,21 @@ def deleteUser(username):
         user.delete()
         print(f"User with the username :  {username} has sucessfully been deleted")
     except Exception as e:
-        print(f"Error: Unable to delete user.{e}")    
+        print(f"Error: Unable to delete user.{e}")  
+
+
+def get_all_users():
+    user = (db.collection('users').stream()) # Get a reference to every document in the Users table
+    
+    uList = []
+    for u in user:           # Transform each user document to a dict containing its fields and data
+        us = u.to_dict()
+        us['ID'] = u.id     # Add the ID of each user to the dict
+        uList.append(us)  # Append all the dicts to a list
+        
+    if us:
+        return uList       # Return the list of dicts containing the all cars and their data
+    else:
+        print("Error: No users within the database.")
 
 #END OF CRUD CODE FOR THE LIST OF CARS DATABASE
