@@ -43,6 +43,7 @@
             {% for car in clist %}
             <tr>
                 <td><img src="{{ car.image_url }}" alt="{{ car['Model'] }}"></td>
+		<td>{{ forloop.counter }}</td>
                 <td>{{ car['Make'] }}</td>
                 <td>{{ car['Model'] }}</td>
                 <td>{{ car['Year'] }}</td>
