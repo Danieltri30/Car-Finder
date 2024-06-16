@@ -134,5 +134,31 @@ def get_all_users():
         return uList       # Return the list of dicts containing the all cars and their data
     else:
         print("Error: No users within the database.")
+        
+def filter_cars(usage=None, transmission=None, fuel=None):
+    cars = (db.collection('Cars').stream())  # Get a reference to every document in the Cars table
 
+    carList = []
+    for c in cars:  # Transform each car document to a dict containing its fields and data
+        car = c.to_dict()
+        car['ID'] = c.id  # Add the ID of each car to the dict
+        carList.append(car)  # Append all the dicts to a list  # Return the list of dicts containing the all cars and their data
+
+    if usage:
+        query = query.where('NorU', '==', usage)
+    if transmission:
+        query = query.where('Transmission', '==', transmission)
+    if fuel:
+        query = query.where('Fuel', '==', fuel)
+
+    car_list = []
+    docs = query.stream()
+    for doc in docs:
+        car = doc.to_dict()
+        car['ID'] = doc.id
+        car_list.append(car)
+
+    return car_list
+
+    return car_list
 #END OF CRUD CODE FOR THE LIST OF CARS DATABASE
