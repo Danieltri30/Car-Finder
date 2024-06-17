@@ -12,14 +12,18 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
+
         h3 {
             margin: 0;
             padding: 20px;
         }
-	h1 {
-	    margin: 0;
-	    padding: 20px;
-	}
+
+        h1 {
+            margin: 0;
+            padding: 20px;
+        }
+
+
         label {
             margin: 5px 0;
         }
@@ -28,16 +32,14 @@
             margin-top: 20px;
             padding: 10px 20px;
         }
-
-
 </style>
 
 <body>
-
     <h1>Cars</h1>
     <table border="1">
         <thead>
             <tr>
+                <th>Car Number</th>
                 <th>Image</th>
                 <th>Make</th>
                 <th>Model</th>
@@ -55,8 +57,8 @@
         <tbody>
             {% for car in clist %}
             <tr>
+                <td></td>
                 <td><img src="{{ car.image_url }}" alt="{{ car['Model'] }}"></td>
-		<td>{{ forloop.counter }}</td>
                 <td>{{ car['Make'] }}</td>
                 <td>{{ car['Model'] }}</td>
                 <td>{{ car['Year'] }}</td>

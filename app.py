@@ -73,13 +73,19 @@ def addCar():
 
 @app.route('/deleteCar', methods=['POST', 'GET'])
 def deleteCar():
-    return render_template('deleteCar.html')
-
+    if request.method == 'POST':
+        return render_template('homepageEmployee.html')
+    else:
+        clist = fire.get_all_cars()
+        return render_template('deleteCar.html', clist=clist)
 
 @app.route('/updateCar', methods=['POST', 'GET'])
 def updateCar():
-    return render_template('updateCar.html')
-
+    if request.method == 'POST':
+        return render_template('homepageEmployee.html')
+    else:
+        clist = fire.get_all_cars()
+        return render_template('updateCar.html', clist=clist)
 
 if __name__ == "__main__":
     app.run(debug=True)
