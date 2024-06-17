@@ -3,57 +3,56 @@
       <form action="{{ url_for('addCar') }}" method="POST">
          <h3>Car Information</h3>
          
+         Make<br>
+         <input type="text" name="make"><br>
+
          Model<br>
          <input type="text" name="model"><br>
          
-         
-         Manufacturer<br>
-         <input type="text" name="manufacturer"><br>
-         
+         Year<br>
+         <input type="text" name="year"><br>
 
-         Price<br>
-         <input type="number" name="price"><br> 
+         Color<br>
+         <input type="text" name="color"><br>
 
-         
-         Type of Car<br>
-         <input type="text" name="typeofcar"><br>
+         Mileage<br>
+         <input type="text" name="mileage"><br>
 
          Miles per Gallon<br>
          <input type="number" name="mpg"><br>
 
          Transmission<br>
-        <select name="transmission" id="transmission">
-        <option value="new">Manual</option>
-        <option value="used">Automatic</option>
-	<option value="used">Hybrid</option>
-            </select> </br>
+         <select name="transmission" id="transmission">
+            <option value="Automatic">Automatic</option>
+            <option value="Manual">Manual</option>
+	         <option value="Hybrid">Hybrid</option>
+         </select></br>
 
          Fuel Type<br>
-        <select name="fuel_type" id="fuel_type">
-        <option value="new">Electric</option>
-        <option value="used">Unleaded</option>
-	<option value="used">Diesel</option>
-            </select> </br>
+         <select name="fuel" id="fuel">
+            <option value="Gasoline">Gasoline</option>
+            <option value="Diesel">Diesel</option>
+	         <option value="Electric">Electric</option>
+	         <option value="Hybrid">Hybrid</option>
+         </select> </br>
 
-	 Usage<br>
-	 <select name="usage" id="usage">
-        <option value="new">New</option>
-        <option value="used">Used</option>
-            </select> </br>
+         Type of Car<br>
+         <input type="text" name="type"><br>
 
-    
+         Condition<br>
+         <select name="condition" id="condition">
+            <option value="New">New</option>
+            <option value="Used">Used</option>
+         </select> </br>
 
-	Upload Picture<br>
-	<input type="file" accept="image/*"> <br>
+         Price<br>
+         <input type="number" name="price"><br> 
 
+         Upload Picture<br>
+         <input type="file" accept="image/*"> <br>
 
-
-         <input type="submit" value="submit"><br>
+         <input type="submit" value="Submit"><br>
       </form>
-      
    <a href="/">Home</a>
-
-
-
-
+   
 </body></html>

@@ -52,7 +52,23 @@ def carsPosted():
 
 @app.route('/addCar', methods=['POST', 'GET'])
 def addCar():
-    return render_template('addCar.html')
+    if request.method == 'POST':
+        make = request.form['make']     # Take in all the fields of the form
+        model = request.form['model']    # Leaving these commented out until the front end's home page fields are sorted out
+        year = request.form['year']
+        color = request.form['color']
+        mileage = request.form['mileage']
+        mpg = request.form['mpg']
+        tran = request.form['transmission']
+        fuel = request.form['fuel']
+        bstyle = request.form['type']
+        cond = request.form['condition']    
+        price = request.form['price']
+        
+        fire.add_car(make, model, year, color, mileage, mpg, tran, fuel, bstyle, cond, price)
+        return render_template('homepageEmployee.html')
+    else:
+        return render_template('addCar.html')
 
 
 @app.route('/deleteCar', methods=['POST', 'GET'])
