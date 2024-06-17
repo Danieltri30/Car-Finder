@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Three Column Layout</title>
+  <title>CarFinder</title>
   <style>
     .container {
       display: flex;
@@ -73,7 +73,7 @@
 <body>
   <div class="container">
     <div class="top">
-      <div>TITLE</div>
+      <div>CarFinder</div>
       <div class="links">
         <div><a href="/carsPosted" style="color: white;">Cars For Sale</a></div>
         <div><a href="/login" style="color: white;">Log In</a></div>
@@ -83,7 +83,7 @@
       <div class="side"></div>
       <div class="middle">
         <div class="center">
-          <form id="carForm">
+          <form id="carForm" action = "{{ url_for('index') }}" method = "POST">
             <input type="checkbox" id="price" name="price" value="price">
             <label for="price">Price</label>
             <div id="priceField" class="noshow">
@@ -115,30 +115,30 @@
             </div>
             <br>
             <input type="checkbox" id="manufacturer" name="manufacturer" value="manufacturer">
-            <label for="manufacturer">Manufacturer</label>
+            <label for="manufacturer">Make</label>
             <div id="manufacturerField" class="noshow">
               <input type="text" placeholder="Enter manufacturer" id="manufacturerInput">
             </div>
             <br>
-            <label for="usage">Usage:</label>
-            <select name="usage" id="usage">
-              <option value="new">New</option>
-              <option value="used">Used</option>
+            <label for="condition">Condition:</label>
+            <select name="condition" id="condition">
+              <option value="New">New</option>
+              <option value="Used">Used</option>
             </select>
             <br>
             <label for="transmission">Transmission Type:</label>
             <select name="transmission" id="transmission">
-              <option value="manual">Manual</option>
-              <option value="auto">Automatic</option>
-              <option value="semiauto">Hybrid</option>
+              <option value="Automatic">Automatic</option>
+              <option value="Manual">Manual</option>
+              <option value="Hybrid">Hybrid</option>
             </select>
             <br>
             <label for="fuel">Fuel Type:</label>
             <select name="fuel" id="fuel">
-              <option value="electric">Electric</option>
-              <option value="diesel">Diesel</option>
-              <option value="hybrid">Hybrid</option>
-              <option value="gasoline">Gasoline</option>
+              <option value="Gasoline">Gasoline</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Electric">Electric</option>
+              <option value="Hybrid">Hybrid</option>
             </select>
             <br>
             <input type="submit" value="Submit">
@@ -159,25 +159,25 @@
                 <th>Transmission</th>
                 <th>Fuel</th>
                 <th>Type</th>
-                <th>NorU</th>
+                <th>Condition</th>
                 <th>Price</th>
               </tr>
             </thead>
             <tbody id="carsList">
               {% for car in clist %}
               <tr>
-                <td><img src="{{ car.image_url }}" alt="{{ car.Model }}"></td>
-                <td>{{ car.Make }}</td>
-                <td>{{ car.Model }}</td>
-                <td>{{ car.Year }}</td>
-                <td>{{ car.Color }}</td>
-                <td>{{ car.Mileage }}</td>
-                <td>{{ car.MPG }}</td>
-                <td>{{ car.Transmission }}</td>
-                <td>{{ car.Fuel }}</td>
-                <td>{{ car.Type }}</td>
-                <td>{{ car.NorU }}</td>
-                <td>{{ car.Price }}</td>
+                <td><img src="{{ car.image_url }}" alt="{{ car['Model'] }}"></td>
+                <td>{{ car['Make'] }}</td>
+                <td>{{ car['Model'] }}</td>
+                <td>{{ car['Year'] }}</td>
+                <td>{{ car['Color'] }}</td>
+                <td>{{ car['Mileage'] }}</td>
+                <td>{{ car['MPG'] }}</td>
+                <td>{{ car['Transmission'] }}</td>
+                <td>{{ car['Fuel'] }}</td>
+                <td>{{ car['Type'] }}</td>
+                <td>{{ car['NorU'] }}</td>
+                <td>{{ car['Price'] }}</td>
               </tr>
               {% endfor %}
             </tbody>

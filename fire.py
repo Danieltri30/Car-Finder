@@ -2,7 +2,7 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-from google.cloud.firestore_v1.base_query import FieldFilter, Or
+from google.cloud.firestore_v1.base_query import FieldFilter, Or, And
 #Fetch service account key JSON file contents
 cred = credentials.Certificate(r"firestore_serviceAccountKey.json")
 
@@ -84,7 +84,7 @@ def update_car(carID, updates):
 
 #DELETE
 #Will be used to delete a car from DB 
-def deleteCar(carID):
+def delete_car(carID):
     car = db.collection('Cars').document(carID) 
     try:
         car.delete()
@@ -93,15 +93,15 @@ def deleteCar(carID):
         print(f"Error: Unable to delete car.{e}")
 
 
-def adduser(username,password,perms):
+def add_user(username, password, perms):
     try:
         # Set the database cursor to the document containing all cars in the database
-        db_cursor = db.collection('users').document()
+        db_cursor = db.collection('Users').document()
         
         new_user = {
-            'username' : username,
-            'password' : password,
-            'perms' : perms
+            'Username' : username,
+            'Password' : password,
+            'Permissions' : perms
         }
         
         # Create a new document for the new user containing its fields and information
@@ -112,8 +112,8 @@ def adduser(username,password,perms):
         print(f"Error: unable to add the user to the database. {e}")
         return None
     
-def deleteUser(username):
-    user = db.collection('user').document(username) 
+def delete_user(username):
+    user = db.collection('User').document(username) 
     try:
         user.delete()
         print(f"User with the username :  {username} has sucessfully been deleted")
@@ -122,7 +122,7 @@ def deleteUser(username):
 
 
 def get_all_users():
-    user = (db.collection('users').stream()) # Get a reference to every document in the Users table
+    user = (db.collection('Users').stream()) # Get a reference to every document in the Users table
     
     uList = []
     for u in user:           # Transform each user document to a dict containing its fields and data
@@ -135,30 +135,22 @@ def get_all_users():
     else:
         print("Error: No users within the database.")
         
-def filter_cars(usage=None, transmission=None, fuel=None):
-    cars = (db.collection('Cars').stream())  # Get a reference to every document in the Cars table
+def filter_cars(make, model, year, color, mileage, mpg, transmission, fueltype, bodystyle, noru, price):
+    db_cursor = db.collection('Cars')  # Get a reference to every document in the Cars table
 
-    carList = []
-    for c in cars:  # Transform each car document to a dict containing its fields and data
-        car = c.to_dict()
-        car['ID'] = c.id  # Add the ID of each car to the dict
-        carList.append(car)  # Append all the dicts to a list  # Return the list of dicts containing the all cars and their data
+    cond_filt = FieldFilter('NorU', '==', noru)     # First run individual filters on the supplied fields
+    tran_filt = FieldFilter('Transmission', '==', transmission)
+    fuel_filt = FieldFilter('Fuel', '==', fueltype)
 
-    if usage:
-        query = query.where('NorU', '==', usage)
-    if transmission:
-        query = query.where('Transmission', '==', transmission)
-    if fuel:
-        query = query.where('Fuel', '==', fuel)
-
+    master_filt = And(filters=[cond_filt, tran_filt, fuel_filt])  # Aggregate them together with an AND filter
+    
+    # Run the query on that aggregate filter, and stream it to get the filtered cars
+    cars = db_cursor.where(filter=master_filt).stream()    
     car_list = []
-    docs = query.stream()
-    for doc in docs:
-        car = doc.to_dict()
-        car['ID'] = doc.id
+    for c in cars:
+        car = c.to_dict()
+        car['ID'] = c.id
         car_list.append(car)
-
-    return car_list
-
+    # Returned the results of the query to the front end page as a list of cars with the filter parameters
     return car_list
 #END OF CRUD CODE FOR THE LIST OF CARS DATABASE

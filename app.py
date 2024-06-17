@@ -4,17 +4,29 @@ import fire
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['POST', 'GET'])
 def index():
-    usage = request.args.get('usage', None)
-    transmission = request.args.get('transmission', None)
-    fuel = request.args.get('fuel', None)
-
-    # Call filter_cars with query parameters to get filtered car data
-    filtered_cars = fire.filter_cars(usage=usage, transmission=transmission, fuel=fuel)
-
-    # Render index.html template and pass filtered car data as clist
-    return render_template('index.html', clist=filtered_cars)
+    if request.method == 'POST':     # If home page wants to submit the form with fields filled in,
+        #make = request.form['make']     # Take in all the fields of the form
+        #model = request.form['model']    # Leaving these commented out until the front end's home page fields are sorted out
+        #year = request.form['year']
+        #color = request.form['color']
+        #mileage = request.form['mileage']
+        #mpg = request.form['mpg']
+        tran = request.form['transmission']
+        fuel = request.form['fuel']
+        #bstyle = request.form['type']
+        cond = request.form['condition']    
+        #price = request.form['price']
+        
+        # Call filter_cars with query parameters to get filtered car data
+        clist = fire.filter_cars(None, None, None, None, None, None, tran, fuel, None, cond, None)
+        
+        # Render index.html template and pass filtered car data as clist
+        return render_template('index.html', clist = clist)
+    else:
+        #Otherwise, return the normal home page
+        return render_template('index.html')
 
 @app.route('/createLogin', methods=['POST', 'GET'])
 def createLogin():
