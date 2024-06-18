@@ -30,12 +30,14 @@
       flex: 0 0 100px;
       background-color: grey;
       padding: 10px;
+      min-height: 100vh;
     }
 
     .middle {
       flex: 1;
       background-color: white;
       padding: 10px;
+      min-height: 100vh;
     }
 
     body {
@@ -67,6 +69,10 @@
     th, td {
       padding: 10px;
       text-align: left;
+    }
+    #results {
+    
+    margin-top: 350px;
     }
   </style>
 </head>
@@ -194,5 +200,16 @@
       </div>
       <div class="side"></div>
     </div>
+      <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const tobechecked = document.querySelectorAll('input[type="checkbox"]');
+      
+      tobechecked.forEach(checkbox => {checkbox.addEventListener('change', function() { const textbox = document.getElementById(this.id+ 'Field');
+          if (this.checked) {
+            textbox.classList.remove('noshow');
+          } else {
+            textbox.classList.add('noshow');
+          } });});});
+  </script>
   </div>
 
