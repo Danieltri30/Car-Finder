@@ -44,7 +44,6 @@
     <table border="1">
         <thead>
             <tr>
-                <th>Image</th>
                 <th>Make</th>
                 <th>Model</th>
                 <th>Year</th>
@@ -61,7 +60,6 @@
         <tbody>
             {% for car in clist %}
             <tr>
-                <td><img src="{{ car.image_url }}" alt="{{ car['Model'] }}"></td>
                 <td>{{ car['Make'] }}</td>
                 <td>{{ car['Model'] }}</td>
                 <td>{{ car['Year'] }}</td>
