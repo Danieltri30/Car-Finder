@@ -1,8 +1,19 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, login_required, logout_user, current_user, LoginManager
 import fire
 
 app = Flask(__name__)
+app.secret_key = 'sharanya'
 
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(id):
+    pass
+    # return User.query.get(int(id))
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -31,9 +42,25 @@ def index():
 @app.route('/createLogin', methods=['POST', 'GET'])
 def createLogin():
     if request.method == 'POST':
-        return render_template('login.html')
-    else:
-        return render_template('createLogin.html')
+        username = request.form['username']
+        password1 = request.form['password1']
+        password2 = request.form['password2']
+        permissions = request.form['permissions']
+        
+        if len(str(username)) < 3:
+            flash('Username must be greater than 3 characters.', category='error')
+        elif password1 != password2:
+            flash('Password don\'t match.', category='error')
+        elif len(str(password1)) < 3:
+            flash('Password must be at least 5 characters.', category='error')
+        else:
+            new_user = username, password1
+            add_user(username, password1, permissions)
+            login_user(new_user, remember=True)
+            flash('Account created!', category='success')
+            return redirect(url_for('index'))
+
+    return render_template('createLogin.html', user=current_user)
 
 
 @app.route('/login', methods=['POST', 'GET'])

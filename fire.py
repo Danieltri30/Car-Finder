@@ -95,7 +95,7 @@ def delete_car(carID):
 
 def add_user(username, password, perms):
     try:
-        # Set the database cursor to the document containing all cars in the database
+        # Set the database cursor to the document containing all users in the database
         db_cursor = db.collection('Users').document()
         
         new_user = {
