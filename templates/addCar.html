@@ -53,6 +53,15 @@
 
          <input type="submit" value="Submit"><br>
       </form>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} 
+      {% if messages %} 
+          {% for category, message in messages %} 
+              {% if category == 'error' %}
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  </div>
+      {% endif %} {% endfor %} {% endif %} {% endwith %}
    <a href="/">Home</a>
    
 </body></html>

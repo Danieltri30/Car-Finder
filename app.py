@@ -68,7 +68,7 @@ def createLogin():
         role = request.form['role']
         
         if password1 != password2:
-            flash('Password don\'t match.', category='error')
+            flash('Passwords don\'t match.', category='error')
         elif len(str(password1)) < 3:
             flash('Password must be at least 5 characters.', category='error')
         else:
@@ -117,7 +117,6 @@ def logout():
 
 
 @app.route('/carsPosted', methods=['GET'])
-@login_required
 def carsPosted():
     clist = fire.get_all_cars()
     return render_template('carsPosted.html', clist=clist)
@@ -127,6 +126,7 @@ def carsPosted():
 @role_required('Employee')
 def addCar():
     if request.method == 'POST':
+        
         make = request.form['make']     # Take in all the fields of the form
         model = request.form['model']    # Leaving these commented out until the front end's home page fields are sorted out
         year = request.form['year']
@@ -139,8 +139,12 @@ def addCar():
         cond = request.form['condition']    
         price = request.form['price']
         
-        fire.add_car(make, model, year, color, mileage, mpg, tran, fuel, bstyle, cond, price)
-        return redirect(url_for('homepageEmployee.html'))
+        if make == "" or model == "" or year == "" or color == "" or mileage == "" or mpg == "" or bstyle == "" or price == "":
+            flash("All fields must be filled out.", category='error')
+            return redirect(url_for('addCar'))
+        else:
+            fire.add_car(make, model, year, color, mileage, mpg, tran, fuel, bstyle, cond, price)
+            return redirect(url_for('homepageEmployee'))
     else:
         return render_template('addCar.html')
 
@@ -149,7 +153,7 @@ def addCar():
 @role_required('Employee')
 def deleteCar():
     if request.method == 'POST':
-        return redirect(url_for('homepageEmployee.html'))
+        return redirect(url_for('homepageEmployee'))
     else:
         clist = fire.get_all_cars()
         return render_template('deleteCar.html', clist=clist)
@@ -158,7 +162,7 @@ def deleteCar():
 @role_required('Employee')
 def updateCar():
     if request.method == 'POST':
-        return redirect(url_for('homepageEmployee.html'))
+        return redirect(url_for('homepageEmployee'))
     else:
         clist = fire.get_all_cars()
         return render_template('updateCar.html', clist=clist)
