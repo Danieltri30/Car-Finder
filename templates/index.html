@@ -75,8 +75,16 @@
     <div class="top">
       <div>CarFinder</div>
       <div class="links">
+        {% if user_role == 'Employee' %}
+            <div><a href="/homepageEmployee" style="color: white">Dashboard</a></div>
+        {% endif %}
+        <div><a href="/" style="color: white;">Home</a></div>
         <div><a href="/carsPosted" style="color: white;">Cars For Sale</a></div>
-        <div><a href="/login" style="color: white;">Log In</a></div>
+        {% if user_role %}
+            <div><a href="/logout" style="color: white;">Logout</a></div>
+        {% else %}
+            <div><a href="/login" style="color: white;">Login</a></div>
+        {% endif %}
       </div>
     </div>
     <div style="display: flex;">

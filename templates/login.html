@@ -18,15 +18,30 @@
 
 <body>
 
+        {% with messages = get_flashed_messages(with_categories=true) %} 
+            {% if messages %} 
+                {% for category, message in messages %} 
+                    {% if category == 'error' %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+        {% endif %} {% endfor %} {% endif %} {% endwith %}
+
 
       <form action="{{ url_for('login') }}" method="POST">
 
          <h3>Welcome!</h3>
 
          Username:<br>
-         <input type ="text" name="uname"></input><br>
+         <input type ="text" name="email"></input><br>
          Password:<br>
-         <input type ="password" name="pword"></input><br>
+         <input type ="password" name="password"></input><br>
 
 
          <input type="submit" value="Submit"><br>

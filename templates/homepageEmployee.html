@@ -56,8 +56,8 @@
   <div class="container">
     <div class="top">CarFinder</div>
     <div style="display: flex;">
-      <div class="side">Left Column</div>
-      <div class="middle">Middle Content
+      <div class="side"></div>
+      <div class="middle">
 	<div class = "center">
 		<form action = "">
 			<input type = "checkbox" id = "price" name = "price" value = "price">
@@ -111,10 +111,14 @@
 
 </div>
 
+    <div class = "side"><a href="/">Home</a></div>
     <div class = "side"><a href = "/carsPosted">Cars For Sale</a></div>
 	<div class = "side"><a href = "/addCar">Add a Car</a></div>
 	<div class = "side"><a href = "/updateCar">Update a Car</a></div>
 	<div class = "side"><a href = "/deleteCar">Remove a car</a></div>
+    {% if user_role %}
+    <div class="side"><a href="/logout">Logout</a></div>
+    {% endif %}
     </div>
   </div>
 </body>
