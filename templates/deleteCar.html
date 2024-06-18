@@ -11,15 +11,16 @@
             margin: 0;
             font-family: Arial, sans-serif;
         }
+
         h3 {
             margin: 0;
             padding: 20px;
         }
-	h1 {
-	    margin: 0;
-	    padding: 20px;
-	}
 
+	    h1 {
+	        margin: 0;
+	        padding: 20px;
+	    }
 </style>
 
 <body>
@@ -46,7 +47,7 @@
         <tbody>
             {% for car in clist %}
             <tr>
-                <td></td>
+                <td>{{ loop.index }}</td>
                 <td><img src="{{ car.image_url }}" alt="{{ car['Model'] }}"></td>
                 <td>{{ car['Make'] }}</td>
                 <td>{{ car['Model'] }}</td>

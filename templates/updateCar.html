@@ -57,7 +57,7 @@
         <tbody>
             {% for car in clist %}
             <tr>
-                <td></td>
+                <td>{{ loop.index }}</td>
                 <td><img src="{{ car.image_url }}" alt="{{ car['Model'] }}"></td>
                 <td>{{ car['Make'] }}</td>
                 <td>{{ car['Model'] }}</td>
@@ -76,41 +76,41 @@
 
 
       <form action="{{ url_for('updateCar') }}" method="POST">
-         <h3>Submit Item Number to Update:</h3>
-
-         Item:<br>
+         <h3>Select Car Number to Update:</h3>
+         Index:<br>
          <input type ="number" name = "index"></input><br>
 
 
 
     <h3>Select Car Attribute to Update:</h3>
+
         <label>
             <input type="radio" name="car_attribute" value="image" required>
             Image
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="make">
+            Make
         </label>
         <label>
             <input type="radio" name="car_attribute" value="model">
             Model
         </label>
         <label>
+            <input type="radio" name="car_attribute" value="year">
+            Year
+        </label>
+        <label>
             <input type="radio" name="car_attribute" value="color">
             Color
         </label>
         <label>
-            <input type="radio" name="car_attribute" value="manufacturer">
-            Manufacturer
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="price">
-            Price
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="type">
-            Type
-        </label>
-        <label>
             <input type="radio" name="car_attribute" value="mileage">
             Mileage
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="mpg">
+            Miles per Gallon
         </label>
         <label>
             <input type="radio" name="car_attribute" value="transmission">
@@ -120,7 +120,18 @@
             <input type="radio" name="car_attribute" value="fuel_type">
             Fuel Type
         </label>
-
+        <label>
+            <input type="radio" name="car_attribute" value="type">
+            Body Style
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="noru">
+            Condition
+        </label>
+        <label>
+            <input type="radio" name="car_attribute" value="price">
+            Price
+        </label>
 
 	New Value:<br>
          <input type ="text" name = "toupdate"></input><br>

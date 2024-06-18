@@ -77,7 +77,7 @@ def get_car(carID):
 def update_car(carID, updates):
     car = db.collection('Cars').document(carID)
     try:
-        car.update({updates})
+        car.update(updates)
         print(f"Car with the id {carID} has successfully been updated with {updates}")
     except Exception as e:
         print(f"Error: Unable to update car. {e}")
