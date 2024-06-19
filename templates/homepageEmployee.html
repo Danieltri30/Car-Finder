@@ -26,7 +26,7 @@
     	flex: 0 0 auto;
     	background-color: grey;
     	padding: 10px;
-	flex-direction: column;
+		flex-direction: column;
     }
 
     .middle {
@@ -45,9 +45,40 @@
 		height: 200px;
 		width: 400px;
 		top: 30%;
-		left: 45%;
+		left: 35%;
 		transform: translate(-50%, -50%);
 		text-align: center;
+	}
+
+	.centerform{
+		width: 100%;
+		left: 50%;
+    	position: fixed;
+		text-align: center;
+	}
+	
+	.centertable{
+    	position: fixed;
+		margin-top: 350px;
+		text-align: center;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		margin-top: 20px;
+	}
+  
+	table, th, td {
+		border: 1px solid black;
+	}
+
+	th, td {
+		padding: 10px;
+		text-align: left;
+	}
+	results {
+		margin-top: 350px;
 	}
   </style>
 </head>
@@ -59,58 +90,94 @@
       <div class="side"></div>
       <div class="middle">
 	<div class = "center">
-		<form action = "">
-			<input type = "checkbox" id = "price" name = "price" value = "price">
-			<label for = "price">Price </label>
-			<br>
-			<input type = "checkbox" id = "model" name = "model" value = "model">
-			<label for = "model">Model </label>
-			<br>
-			<input type = "checkbox" id = "color" name = "color" value = "color">
-			<label for = "color">Color </label>
-			<br>
-			<input type = "checkbox" id = "miles" name = "miles" value = "miles">
-			<label for = "miles">Miles Per Gallon </label>
-			<br>
-			<input type = "checkbox" id = "type" name = "type" value = "type">
-			<label for = "type"> Type of Car </label>
-			<br>
+		<div class = "centerform">
+			<form action = "{{ url_for('homepageEmployee') }}" method = "POST">
+				<input type = "checkbox" id = "price" name = "price" value = "price">
+				<label for = "price">Price </label>
+				<br>
+				<input type = "checkbox" id = "model" name = "model" value = "model">
+				<label for = "model">Model </label>
+				<br>
+				<input type = "checkbox" id = "color" name = "color" value = "color">
+				<label for = "color">Color </label>
+				<br>
+				<input type = "checkbox" id = "miles" name = "miles" value = "miles">
+				<label for = "miles">Miles Per Gallon </label>
+				<br>
+				<input type = "checkbox" id = "type" name = "type" value = "type">
+				<label for = "type"> Type of Car </label>
+				<br>
 
-			<input type = "checkbox" id = "manufacturer" name = "manufacturer" value = "manufacturer">
-			<label for = "manufacturer">Make</label>
+				<input type = "checkbox" id = "manufacturer" name = "manufacturer" value = "manufacturer">
+				<label for = "manufacturer">Make</label>
 
-			<br>
-			<label for = "condition">Condition:</label>
-				<select name = "condition" id = "condition">
-				<option value = "new">New </option>
-				<option value = "used">Used</option>
-				</select>
-			<br>
-			<label for = "transmission">Transmission Type:</label>
-				<select name = "transmission" id = "transmission">
-				<option value = "Automatic">Automatic</option>
-				<option value = "Manual">Manual</option>
-				<option value = "Hybrid">Hybrid</option>
-				</select>
-			<br>
-			<label for = "fuel"> Fuel Type: </label>
-				<select name = "fuel" id = "fuel">
-				<option value = "Gasoline">Gasoline</option>
-				<option value = "Diesel">Diesel</option>
-				<option value = "Electric">Electric</option>
-				<option value = "Hybrid">Hybrid</option>
-				</select>
-			<br>
+				<br>
+				<label for = "condition">Condition:</label>
+					<select name = "condition" id = "condition">
+					<option value = "New">New </option>
+					<option value = "Used">Used</option>
+					</select>
+				<br>
+				<label for = "transmission">Transmission Type:</label>
+					<select name = "transmission" id = "transmission">
+					<option value = "Automatic">Automatic</option>
+					<option value = "Manual">Manual</option>
+					<option value = "Hybrid">Hybrid</option>
+					</select>
+				<br>
+				<label for = "fuel"> Fuel Type: </label>
+					<select name = "fuel" id = "fuel">
+					<option value = "Gasoline">Gasoline</option>
+					<option value = "Diesel">Diesel</option>
+					<option value = "Electric">Electric</option>
+					<option value = "Hybrid">Hybrid</option>
+					</select>
+				<br>
 
-
-
-			<input type = "submit" value = "Submit">
-			<br>			
-		</form>
+				<input type = "submit" value = "Submit">
+				<br>			
+			</form>
+		</div>
+		<div class="centertable">
+			<table id="resultsTable">
+				<thead>
+				<tr>
+					<th>Make</th>
+					<th>Model</th>
+					<th>Year</th>
+					<th>Color</th>
+					<th>Mileage</th>
+					<th>MPG</th>
+					<th>Transmission</th>
+					<th>Fuel</th>
+					<th>Type</th>
+					<th>Condition</th>
+					<th>Price</th>
+				</tr>
+				</thead>
+				<tbody id="carsList">
+				{% for car in clist %}
+				<tr>
+					<td>{{ car['Make'] }}</td>
+					<td>{{ car['Model'] }}</td>
+					<td>{{ car['Year'] }}</td>
+					<td>{{ car['Color'] }}</td>
+					<td>{{ car['Mileage'] }}</td>
+					<td>{{ car['MPG'] }}</td>
+					<td>{{ car['Transmission'] }}</td>
+					<td>{{ car['Fuel'] }}</td>
+					<td>{{ car['Type'] }}</td>
+					<td>{{ car['NorU'] }}</td>
+					<td>{{ car['Price'] }}</td>
+				</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
+	
 
 </div>
-
     <div class = "side"><a href="/">Home</a></div>
     <div class = "side"><a href = "/carsPosted">Cars For Sale</a></div>
 	<div class = "side"><a href = "/addCar">Add a Car</a></div>

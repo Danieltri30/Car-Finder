@@ -220,11 +220,30 @@ def updateCar():
         clist = fire.get_all_cars()
         return render_template('updateCar.html', clist=clist)
 
-@app.route('/homepageEmployee')
+@app.route('/homepageEmployee', methods=['POST','GET'])
 @role_required('Employee')
 def homepageEmployee():
     user_role = session['user']['role']
-    return render_template('homepageEmployee.html', user_role=user_role)
+    if request.method == 'POST':     # If home page wants to submit the form with fields filled in,
+        #make = request.form['make']     # Take in all the fields of the form
+        #model = request.form['model']    # Leaving these commented out until the front end's home page fields are sorted out
+        #year = request.form['year']
+        #color = request.form['color']
+        #mileage = request.form['mileage']
+        #mpg = request.form['mpg']
+        tran = request.form['transmission']
+        fuel = request.form['fuel']
+        #bstyle = request.form['type']
+        cond = request.form['condition']    
+        #price = request.form['price']
+        
+        # Call filter_cars with query parameters to get filtered car data
+        clist = fire.filter_cars(None, None, None, None, None, None, tran, fuel, None, cond, None)
+        
+        # Render index.html template and pass filtered car data as clist
+        return render_template('homepageEmployee.html', user_role=user_role, clist=clist)
+    else:
+        return render_template('homepageEmployee.html', user_role=user_role)
 
 if __name__ == "__main__":
     app.run(debug=True)
