@@ -135,7 +135,7 @@ def get_all_users():
     else:
         print("Error: No users within the database.")
 
-def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, fuel, bstyle, cond, price_range):
+def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, bstyle, cond, price_range):
     db_cursor = db.collection('Cars')  # Get a reference to every document in the Cars table
 
     # filter cars into cars list
@@ -149,7 +149,6 @@ def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, 
     mpg_low_filter = FieldFilter("MPG", ">=", mpg_range[0])
     mpg_high_filter = FieldFilter("MPG", "<=", mpg_range[1])
     trans_filter = FieldFilter("Transmission", "==", tran)
-    fuel_filter = FieldFilter("Fuel", "==", fuel)
     type_filter = FieldFilter("Type", "==", bstyle)
     cond_filter = FieldFilter("NorU", "==", cond)
     price_low_filter = FieldFilter("Price", ">=", price_range[0])
@@ -157,25 +156,64 @@ def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, 
 
     filters_list = []
     if make != None: filters_list.append(make_filter)
+    
     if model != None: filters_list.append(model_filter)
-    filters_list.append(year_low_filter)
-    filters_list.append(year_high_filter)
+    
+    if year_range[0] != year_range[1]:
+        filters_list.append(year_low_filter)
+        filters_list.append(year_high_filter)
+    else:
+        filters_list.append(FieldFilter('Year', '>', 0))
+        
     if color != None: filters_list.append(color_filter)
-    filters_list.append(mileage_low_filter)
-    filters_list.append(mileage_high_filter)
-    filters_list.append(mpg_low_filter)
-    filters_list.append(mpg_high_filter)
-    filters_list.append(trans_filter)
-    filters_list.append(fuel_filter)
-    filters_list.append(type_filter)
-    filters_list.append(cond_filter)
-    filters_list.append(price_low_filter)
-    filters_list.append(price_high_filter)
+    
+    if mileage_range[0] != mileage_range[1]:
+        filters_list.append(mileage_low_filter)
+        filters_list.append(mileage_high_filter)
+    else:
+        filters_list.append(FieldFilter("Mileage", ">", 0))
+
+    if mpg_range[0] != mpg_range[1]:
+        filters_list.append(mpg_low_filter)
+        filters_list.append(mpg_high_filter)
+    else:
+        filters_list.append(FieldFilter("MPG" , ">" , 0))   
+
+    if tran != "Any":
+        filters_list.append(trans_filter)
+    else:
+        filters_list.append(FieldFilter("Transmission", "in", ["Automatic", "Manual"]))
+    
+    '''if fuel != "Any":
+        filters_list.append(fuel_filter)
+    else:
+        filters_list.append(FieldFilter("Fuel", "in", ["Electric", "Gasoline", "Hybrid"]))'''
+
+    if bstyle != "Any":
+        filters_list.append(type_filter)
+    else:
+        filters_list.append(FieldFilter("Type", "in", ["Sedan", "Pickup", "SUV"]))
+  
+    if cond != "Any":
+        filters_list.append(cond_filter)
+    else:
+        filters_list.append(FieldFilter("NorU", "in", ["New", "Used"]))
+
+    if price_range[0] != price_range[1]:
+        filters_list.append(price_low_filter)
+        filters_list.append(price_high_filter)
+    else:
+        filters_list.append(FieldFilter("Price", ">=", 0))
     
     master_filter = And(filters=filters_list)
     cars = db_cursor.where(filter=master_filter).stream()
 
     car_list = []
+
+    '''for c in cars:
+        for attr in c:
+            if()'''
+        
     for c in cars:
         car = c.to_dict()
         car['ID'] = c.id

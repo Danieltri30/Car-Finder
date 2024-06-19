@@ -99,10 +99,10 @@ def index():
             tran = request.form['transmission']
         else:
             tran = None
-        if 'fuel' in request.form and request.form['fuel']:
-            fuel = request.form['fuel']
-        else:
-            fuel = None
+        # if 'fuel' in request.form and request.form['fuel']:
+        #     fuel = request.form['fuel']
+        # else:
+            # fuel = None
         if 'type' in request.form and request.form['type']:
             bstyle = request.form['type']
         else:
@@ -119,7 +119,7 @@ def index():
             price = None
         # Retrieve other fields if they exist in the form
         
-        clist = fire.filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, fuel, bstyle, cond, price_range)
+        clist = fire.filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, bstyle, cond, price_range)
         # Render index.html template and pass filtered car data as clist
         return render_template('index.html', clist=clist, user_role=user_role)
     else:
@@ -291,25 +291,67 @@ def updateCar():
 @role_required('Employee')
 def homepageEmployee():
     user_role = session['user']['role']
-    if request.method == 'POST':     # If home page wants to submit the form with fields filled in,
-        #make = request.form['make']     # Take in all the fields of the form
-        #model = request.form['model']    # Leaving these commented out until the front end's home page fields are sorted out
-        #year = request.form['year']
-        #color = request.form['color']
-        #mileage = request.form['mileage']
-        #mpg = request.form['mpg']
-        tran = request.form['transmission']
-        fuel = request.form['fuel']
-        bstyle = request.form['type']
-        cond = request.form['condition']    
-        #price = request.form['price']
+    if request.method == 'POST':
+        # Retrieve condition, transmission, and fuel
+        if 'make' in request.form and request.form['make']:
+            make = request.form['make']
+        else:
+            make = None
+        if 'model' in request.form and request.form['model']:
+            model = request.form['model']
+        else:
+            model = None
+        if 'year' in request.form and request.form['year']:
+            year = request.form['year']
+            year = year.split(" ")
+            year_range = (int(year[0]),int(year[1]))
+        else:
+            year = None
+        if 'color' in request.form and request.form['color']:
+            color = request.form['color']
+        else:
+            color = None
+        if 'mileage' in request.form and request.form['mileage']:
+            mileage = request.form['mileage']
+            mileage = mileage.split(" ")
+            mileage_range = (int(mileage[0]), int(mileage[1]))
+        else:
+            mileage = None
+        if 'mpg' in request.form and request.form['mpg']:
+            mpg = request.form['mpg']
+            mpg = mpg.split(" ")
+            mpg_range = (int(mpg[0]), int(mpg[1]))
+        else:
+            mpg = None
+        if 'transmission' in request.form and request.form['transmission']:
+            tran = request.form['transmission']
+        else:
+            tran = None
+        # if 'fuel' in request.form and request.form['fuel']:
+        #     fuel = request.form['fuel']
+        # else:
+            # fuel = None
+        if 'type' in request.form and request.form['type']:
+            bstyle = request.form['type']
+        else:
+            bstyle = None
+        if 'condition' in request.form and request.form['condition']:
+            cond = request.form['condition']
+        else:
+            cond = None
+        if 'price' in request.form and request.form['price']:
+            price = request.form['price']
+            price = price.split(" ")
+            price_range = (int(price[0]), int(price[1]))
+        else:
+            price = None
+        # Retrieve other fields if they exist in the form
         
-        # Call filter_cars with query parameters to get filtered car data
-        clist = fire.filter_cars(None, None, None, None, None, None, tran, fuel, bstyle, cond, None)
-        
+        clist = fire.filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, bstyle, cond, price_range)
         # Render index.html template and pass filtered car data as clist
-        return render_template('homepageEmployee.html', user_role=user_role, clist=clist)
+        return render_template('homepageEmployee.html', clist=clist, user_role=user_role)
     else:
+        # Otherwise, return the normal home page
         return render_template('homepageEmployee.html', user_role=user_role)
         
 #Gets role and returns them to their homepage

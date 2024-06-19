@@ -103,90 +103,98 @@
 				<div class = "centerform">
 					<h1>Car Search</h1>
 					<form id="carForm" action = "{{ url_for('index') }}" method = "POST">
-					
-					<br>Make:
-					<input type="text" name="make"></br>
-		
-					<br>Model:
-					<input type="text" name="model"></br>
-		
-					<br>Year:
-					<select name="year" id="year">
-						<option value="1970 1980">1970 - 1980</option>
-						<option value="1980 1990">1980 - 1990</option>
-						<option value="1990 2000">1990 - 2000</option>
-						<option value="2000 2010">2000 - 2010</option>
-						<option value="2010 2020">2010 - 2020</option>
-						<option value="2020+">2020+</option>
-					</select></br>
-		
-					<br>Color:
-					<input type="text" name="color"></br>
-		
-					<br>Mileage:
-					<select name="mileage" id="mileage">
-						<option value="0 25">0 - 25,000</option>
-						<option value="25 50">25,000 - 50,000</option>
-						<option value="50 75">50,000 - 75,000</option>
-						<option value="75 100">75,000 - 100,000</option>
-						<option value="100+">100,000+</option>
-					</select></br>
-		
-					<br>Miles per Gallon:
-					<select name="mpg" id="mpg">
-						<option value="0 15">0 - 15</option>
-						<option value="15 25">15 - 25</option>
-						<option value="25 35">25 - 35</option>
-						<option value="35+">35+</option>
-					</select></br>
-		
-					<br>
-					<label for="transmission">Transmission Type:</label>
-					<select name="transmission" id="transmission">
-						<option value="Automatic">Automatic</option>
-						<option value="Manual">Manual</option>
-						<option value="Hybrid">Hybrid</option>
-					</select></br>
-		
-					<br>
-					<label for="fuel">Fuel Type:</label>
-					<select name="fuel" id="fuel">
-						<option value="Gasoline">Gasoline</option>
-						<option value="Diesel">Diesel</option>
-						<option value="Electric">Electric</option>
-						<option value="Hybrid">Hybrid</option>
-					</select></br>
-		
-					<br>Body Style:
-					<select name="type" id="type">
-					  <option value="Sedan">Sedan</option>
-					  <option value="SUV">SUV</option>
-					  <option value="Roadster">Roadster</option>
-					  <option value="Convertible">Convertible</option>
-					  <option value="Coupe">Coupe</option>
-					  <option value="Pickup">Pickup</option>
-					</select></br>
-		
-					<br>
-					<label for="condition">Condition:</label>
-					<select name="condition" id="condition">
-						<option value="New">New</option>
-						<option value="Used">Used</option>
-					</select></br>
-		
-					<br>Price:
-					<select name="price" id="price">
-						<option value="0 50">0 - 50,000</option>
-						<option value="50 75">50,000 - 75,000</option>
-						<option value="75 100">75,000 - 100,000</option>
-						<option value="100 125">100,000 - 125,000</option>
-						<option value="125+">125,000+</option>
-					</select></br>
-		
-					<br>
-						<input type="submit" value="Submit">
-					</br>
-					</form>
+            
+						<br>Make:
+						<input type="text" name="make"></br>
+			
+						<br>Model:
+						<input type="text" name="model"></br>
+			
+						<br>Year:
+						<select name="year" id="year">
+						  <option value="0 0">Any</option>
+						  <option value="1970 1980">1970 - 1980</option>
+						  <option value="1980 1990">1980 - 1990</option>
+						  <option value="1990 2000">1990 - 2000</option>
+						  <option value="2000 2010">2000 - 2010</option>
+						  <option value="2010 2020">2010 - 2020</option>
+						  <option value="2020 2030">2020+</option>
+						</select></br>
+			
+						<br>Color:
+						<input type="text" name="color"></br>
+			
+						<br>Mileage:
+						<select name="mileage" id="mileage">
+						  <option value="0 0">Any</option>
+						  <option value="0 25000">0 - 25,000</option>
+						  <option value="25000 50000">25,000 - 50,000</option>
+						  <option value="50000 75000">50,000 - 75,000</option>
+						  <option value="75000 100000">75,000 - 100,000</option>
+						  <option value="100000 10000000">100,000+</option>
+						</select></br>
+			
+						<br>Miles per Gallon:
+						<select name="mpg" id="mpg">
+						  <option value="0 0">Any</option>
+						  <option value="0 15">0 - 15</option>
+						  <option value="15 25">15 - 25</option>
+						  <option value="25 35">25 - 35</option>
+						  <option value="35 10000">35+</option>
+						</select></br>
+			
+						<br>
+						<label for="transmission">Transmission Type:</label>
+						<select name="transmission" id="transmission">
+						  <option value="Any">Any</option>
+						  <option value="Automatic">Automatic</option>
+						  <option value="Manual">Manual</option>
+						  <option value="Hybrid">Hybrid</option>
+						</select></br>
+			
+						<!-- <br>
+						<label for="fuel">Fuel Type:</label>
+						<select name="fuel" id="fuel">
+						  <option value="Any">Any</option>
+						  <option value="Gasoline">Gasoline</option>
+						  <option value="Diesel">Diesel</option>
+						  <option value="Electric">Electric</option>
+						  <option value="Hybrid">Hybrid</option>
+						</select></br> -->
+			
+						<br>Body Style:
+						<select name="type" id="type">
+						  <option value="Any">Any</option>
+						  <option value="Sedan">Sedan</option>
+						  <option value="SUV">SUV</option>
+						  <option value="Roadster">Roadster</option>
+						  <option value="Convertible">Convertible</option>
+						  <option value="Coupe">Coupe</option>
+						  <option value="Pickup">Pickup</option>
+						</select></br>
+			
+						<br>
+						<label for="condition">Condition:</label>
+						<select name="condition" id="condition">
+						  <option value="Any">Any</option>
+						  <option value="New">New</option>
+						  <option value="Used">Used</option>
+						</select></br>
+			
+						<br>Price:
+						<select name="price" id="price">
+						  <option value="0 0">Any</option>
+						  <option value="0 50000">0 - 50,000</option>
+						  <option value="50000 75000">50,000 - 75,000</option>
+						  <option value="75000 100000">75,000 - 100,000</option>
+						  <option value="100000 125000">100,000 - 125,000</option>
+						  <option value="125000 100000000">125,000+</option>
+						</select></br>
+			
+						<br>
+						  <input type="submit" value="Submit">
+						</br>
+					  </form>
 				</div>
 				<div class="centertable">
 					<table id="resultsTable">
