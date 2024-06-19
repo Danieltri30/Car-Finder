@@ -33,31 +33,31 @@ def load_user(uid):
     current_user = auth.get_user(uid)
     return current_user
 
-# @app.route('/', methods=['POST', 'GET'])
-# def index():
-#     user = session.get('user')
-#     user_role = user['role'] if user else None
-#     if request.method == 'POST':     # If home page wants to submit the form with fields filled in,
-#         #make = request.form['make']     # Take in all the fields of the form
-#         #model = request.form['model']    # Leaving these commented out until the front end's home page fields are sorted out
-#         #year = request.form['year']
-#         #color = request.form['color']
-#         #mileage = request.form['mileage']
-#         #mpg = request.form['mpg']
-#         tran = request.form['transmission']
-#         fuel = request.form['fuel']
-#         #bstyle = request.form['type']
-#         cond = request.form['condition']    
-#         #price = request.form['price']
-#         
-#         # Call filter_cars with query parameters to get filtered car data
-#         clist = fire.filter_cars(None, None, None, None, None, None, tran, fuel, None, cond, None)
-#         
+'''@app.route('/', methods=['POST', 'GET'])
+  def index():
+      user = session.get('user')
+      user_role = user['role'] if user else None
+        if request.method == 'POST':     # If home page wants to submit the form with fields filled in,
+         #make = request.form['make']     # Take in all the fields of the form
+         #model = request.form['model']    # Leaving these commented out until the front end's home page fields are sorted out
+         #year = request.form['year']
+         #color = request.form['color']
+         #mileage = request.form['mileage']
+         #mpg = request.form['mpg']
+         tran = request.form['transmission']
+         fuel = request.form['fuel']
+         #bstyle = request.form['type']
+         cond = request.form['condition']    
+         #price = request.form['price']
+         
+         # Call filter_cars with query parameters to get filtered car data
+         clist = fire.filter_cars(None, None, None, None, None, None, tran, fuel, None, cond, None)
+         
 #         # Render index.html template and pass filtered car data as clist
 #         return render_template('index.html', clist = clist, user_role=user_role)
 #     else:
 #         #Otherwise, return the normal home page
-#         return render_template('index.html', user_role=user_role)
+#         return render_template('index.html', user_role=user_role) '''
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -209,7 +209,7 @@ def addCar():
             flash("All fields must be filled out.", category='error')
             return redirect(url_for('addCar'))
         else:
-            fire.add_car(make, model, year, color, mileage, mpg, tran, fuel, bstyle, cond, price)
+            fire.add_car(make, model, int(year), color, int(mileage), int(mpg), tran, fuel, bstyle, cond, int(price))
             return redirect(url_for('homepageEmployee'))
     else:
         return render_template('addCar.html')
@@ -269,7 +269,7 @@ def updateCar():
                 update['MPG'] = updates
             elif attr == "transmission":
                 update['Transmission'] = updates
-            elif attr == "fuel_type":
+            elif attr == "fuel":
                 update['Fuel'] = updates
             elif attr == "type":
                 update['Type'] = updates
