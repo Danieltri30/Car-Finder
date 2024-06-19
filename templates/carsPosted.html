@@ -6,11 +6,13 @@
         body {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+            padding-top: 50px;
+            box-sizing: border-box;
         }
 
         table {
@@ -37,6 +39,15 @@
             max-width: 100px;
             height: auto;
         }
+        .top {
+    	flex: 0 0 auto; 
+    	background-color: blue;
+    	color: white;
+    	padding: 10px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+    }
     </style>
 </head>
 <body>
@@ -78,4 +89,3 @@
     <a href="/">Home</a>
 </body>
 </html>
-
