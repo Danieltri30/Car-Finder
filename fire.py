@@ -171,7 +171,7 @@ def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, 
         filters_list.append(mileage_low_filter)
         filters_list.append(mileage_high_filter)
     else:
-        filters_list.append(FieldFilter("Mileage", ">", 0))
+        filters_list.append(FieldFilter("Mileage", ">=", 0))
 
     if mpg_range[0] != mpg_range[1]:
         filters_list.append(mpg_low_filter)
@@ -192,7 +192,7 @@ def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, 
     if bstyle != "Any":
         filters_list.append(type_filter)
     else:
-        filters_list.append(FieldFilter("Type", "in", ["Sedan", "Pickup", "SUV"]))
+        filters_list.append(FieldFilter("Type", "in", ["Sedan", "Pickup", "SUV" , "Coupe","Roadster", "Convertible"]))
   
     if cond != "Any":
         filters_list.append(cond_filter)
@@ -206,6 +206,11 @@ def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, 
         filters_list.append(FieldFilter("Price", ">=", 0))
     
     master_filter = And(filters=filters_list)
+
+    print("Applied Filters:")
+    for f in filters_list:
+        print(f.__dict__)
+
     cars = db_cursor.where(filter=master_filter).stream()
 
     car_list = []
@@ -219,6 +224,10 @@ def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, 
         car['ID'] = c.id
         car_list.append(car)
     # Returned the results of the query to the front end page as a list of cars with the filter parameters
+        
+    print("Filtered Cars:")
+    for car in car_list:
+        print(car)
     return car_list
 
 #END OF CRUD CODE FOR THE LIST OF CARS DATABASE
