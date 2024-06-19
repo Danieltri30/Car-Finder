@@ -130,6 +130,7 @@
 
             <br>Miles per Gallon:
             <select name="mpg" id="mpg">
+              <option value="Any">Any</option>
               <option value="0 15">0 - 15</option>
               <option value="15 25">15 - 25</option>
               <option value="25 35">25 - 35</option>
@@ -139,6 +140,7 @@
             <br>
             <label for="transmission">Transmission Type:</label>
             <select name="transmission" id="transmission">
+              <option value="Any">Any</option>
               <option value="Automatic">Automatic</option>
               <option value="Manual">Manual</option>
               <option value="Hybrid">Hybrid</option>
@@ -147,6 +149,7 @@
             <br>
             <label for="fuel">Fuel Type:</label>
             <select name="fuel" id="fuel">
+              <option value="Any">Any</option>
               <option value="Gasoline">Gasoline</option>
               <option value="Diesel">Diesel</option>
               <option value="Electric">Electric</option>
@@ -154,7 +157,15 @@
             </select></br>
 
             <br>Body Style:
-            <input type="text" name="type"></br>
+            <select name="type" id="type">
+              <option value="Any">Any</option>
+              <option value="Sedan">Sedan</option>
+              <option value="SUV">SUV</option>
+              <option value="Roadster">Roadster</option>
+              <option value="Convertible">Convertible</option>
+              <option value="Coupe">Coupe</option>
+              <option value="Pickup">Pickup</option>
+            </select></br>
 
             <br>
             <label for="condition">Condition:</label>

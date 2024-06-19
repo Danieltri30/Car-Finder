@@ -95,7 +95,7 @@ def index():
             mpg_range = (int(mpg[0]), int(mpg[1]))
         else:
             mpg = None
-        if 'tran' in request.form and request.form['transmission']:
+        if 'transmission' in request.form and request.form['transmission']:
             tran = request.form['transmission']
         else:
             tran = None
@@ -118,6 +118,7 @@ def index():
         else:
             price = None
         # Retrieve other fields if they exist in the form
+        
         clist = fire.filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, fuel, bstyle, cond, price_range)
         # Render index.html template and pass filtered car data as clist
         return render_template('index.html', clist=clist, user_role=user_role)
@@ -205,7 +206,7 @@ def addCar():
         cond = request.form['condition']    
         price = request.form['price']
         
-        if make == "" or model == "" or year == "" or color == "" or mileage == "" or mpg == "" or bstyle == "" or price == "":
+        if make == "" or model == "" or year == "" or color == "" or mileage == "" or mpg == "" or price == "":
             flash("All fields must be filled out.", category='error')
             return redirect(url_for('addCar'))
         else:
@@ -299,12 +300,12 @@ def homepageEmployee():
         #mpg = request.form['mpg']
         tran = request.form['transmission']
         fuel = request.form['fuel']
-        #bstyle = request.form['type']
+        bstyle = request.form['type']
         cond = request.form['condition']    
         #price = request.form['price']
         
         # Call filter_cars with query parameters to get filtered car data
-        clist = fire.filter_cars(None, None, None, None, None, None, tran, fuel, None, cond, None)
+        clist = fire.filter_cars(None, None, None, None, None, None, tran, fuel, bstyle, cond, None)
         
         # Render index.html template and pass filtered car data as clist
         return render_template('homepageEmployee.html', user_role=user_role, clist=clist)
