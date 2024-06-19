@@ -33,32 +33,6 @@ def load_user(uid):
     current_user = auth.get_user(uid)
     return current_user
 
-'''@app.route('/', methods=['POST', 'GET'])
-  def index():
-      user = session.get('user')
-      user_role = user['role'] if user else None
-        if request.method == 'POST':     # If home page wants to submit the form with fields filled in,
-         #make = request.form['make']     # Take in all the fields of the form
-         #model = request.form['model']    # Leaving these commented out until the front end's home page fields are sorted out
-         #year = request.form['year']
-         #color = request.form['color']
-         #mileage = request.form['mileage']
-         #mpg = request.form['mpg']
-         tran = request.form['transmission']
-         fuel = request.form['fuel']
-         #bstyle = request.form['type']
-         cond = request.form['condition']    
-         #price = request.form['price']
-         
-         # Call filter_cars with query parameters to get filtered car data
-         clist = fire.filter_cars(None, None, None, None, None, None, tran, fuel, None, cond, None)
-         
-#         # Render index.html template and pass filtered car data as clist
-#         return render_template('index.html', clist = clist, user_role=user_role)
-#     else:
-#         #Otherwise, return the normal home page
-#         return render_template('index.html', user_role=user_role) '''
-
 @app.route('/', methods=['POST', 'GET'])
 def index():
     user = session.get('user')
@@ -99,10 +73,6 @@ def index():
             tran = request.form['transmission']
         else:
             tran = None
-        # if 'fuel' in request.form and request.form['fuel']:
-        #     fuel = request.form['fuel']
-        # else:
-            # fuel = None
         if 'type' in request.form and request.form['type']:
             bstyle = request.form['type']
         else:
@@ -327,10 +297,6 @@ def homepageEmployee():
             tran = request.form['transmission']
         else:
             tran = None
-        # if 'fuel' in request.form and request.form['fuel']:
-        #     fuel = request.form['fuel']
-        # else:
-            # fuel = None
         if 'type' in request.form and request.form['type']:
             bstyle = request.form['type']
         else:

@@ -183,11 +183,6 @@ def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, 
         filters_list.append(trans_filter)
     else:
         filters_list.append(FieldFilter("Transmission", "in", ["Automatic", "Manual"]))
-    
-    '''if fuel != "Any":
-        filters_list.append(fuel_filter)
-    else:
-        filters_list.append(FieldFilter("Fuel", "in", ["Electric", "Gasoline", "Hybrid"]))'''
 
     if bstyle != "Any":
         filters_list.append(type_filter)
@@ -207,28 +202,14 @@ def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, 
     
     master_filter = And(filters=filters_list)
 
-    print("Applied Filters:")
-    for f in filters_list:
-        print(f.__dict__)
-
     cars = db_cursor.where(filter=master_filter).stream()
 
     car_list = []
-
-    '''for c in cars:
-        for attr in c:
-            if()'''
-        
     for c in cars:
         car = c.to_dict()
         car['ID'] = c.id
         car_list.append(car)
     # Returned the results of the query to the front end page as a list of cars with the filter parameters
-        
-    print("Filtered Cars:")
-    for car in car_list:
-        print(car)
-    return car_list
 
 #END OF CRUD CODE FOR THE LIST OF CARS DATABASE
 
