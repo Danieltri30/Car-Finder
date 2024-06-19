@@ -30,7 +30,6 @@
         <thead>
             <tr>
                 <th>Car Number</th>
-                <!--<th>Image</th>-->
                 <th>Make</th>
                 <th>Model</th>
                 <th>Year</th>
@@ -48,7 +47,6 @@
             {% for car in clist %}
             <tr>
                 <td>{{ loop.index }}</td>
-               <!-- <td><img src="{{ car.image_url }}" alt="{{ car['Model'] }}"></td>-->
                 <td>{{ car['Make'] }}</td>
                 <td>{{ car['Model'] }}</td>
                 <td>{{ car['Year'] }}</td>
@@ -63,16 +61,26 @@
             </tr>
             {% endfor %}
         </tbody>
+    </table>
 
 
-      <form action="{{ url_for('deleteCar') }}" method="POST">
-         <h3>Submit Item Number to Delete:</h3>
+      <form align="center" action="{{ url_for('deleteCar') }}" method="POST">
+         <h3>Select Car Number to Delete:</h3>
 
          Index:<br>
-         <input type ="number" name = "index"></input><br>
+         <input type ="number" name = "index"></input></br>
 
-         <input type="submit" value="Submit"><br>
+         <br><input type="submit" value="Submit"></br>
       </form>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} 
+      {% if messages %} 
+          {% for category, message in messages %} 
+              {% if category == 'error' %}
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  </div>
+      {% endif %} {% endfor %} {% endif %} {% endwith %}
 	    <a href="/">Home</a>
 
 </body></html>

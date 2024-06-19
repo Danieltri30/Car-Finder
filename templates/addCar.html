@@ -1,67 +1,64 @@
 <html><head></head><body>
       
-      <form action="{{ url_for('addCar') }}" method="POST">
-         <h3>Car Information</h3>
-         
-         Make<br>
-         <input type="text" name="make"><br>
+   <form action="{{ url_for('addCar') }}" method="POST">
+      <h1>Car Information</h1>
+      
+      <br>Make:
+      <input type="text" name="make"></br>
 
-         Model<br>
-         <input type="text" name="model"><br>
-         
-         Year<br>
-         <input type="text" name="year"><br>
+      <br>Model:
+      <input type="text" name="model"></br>
+      
+      <br>Year:
+      <input type="text" name="year"></br>
 
-         Color<br>
-         <input type="text" name="color"><br>
+      <br>Color:
+      <input type="text" name="color"></br>
 
-         Mileage<br>
-         <input type="text" name="mileage"><br>
+      <br>Mileage:
+      <input type="number" name="mileage"></br>
 
-         Miles per Gallon<br>
-         <input type="number" name="mpg"><br>
+      <br>Miles per Gallon:
+      <input type="number" name="mpg"></br>
 
-         Transmission<br>
-         <select name="transmission" id="transmission">
-            <option value="Automatic">Automatic</option>
-            <option value="Manual">Manual</option>
-	         <option value="Hybrid">Hybrid</option>
-         </select></br>
+      <br>Transmission:
+      <select name="transmission" id="transmission">
+         <option value="Automatic">Automatic</option>
+         <option value="Manual">Manual</option>
+         <option value="Hybrid">Hybrid</option>
+      </select></br>
 
-         Fuel Type<br>
-         <select name="fuel" id="fuel">
-            <option value="Gasoline">Gasoline</option>
-            <option value="Diesel">Diesel</option>
-	         <option value="Electric">Electric</option>
-	         <option value="Hybrid">Hybrid</option>
-         </select> </br>
+      <br>Fuel Type:
+      <select name="fuel" id="fuel">
+         <option value="Gasoline">Gasoline</option>
+         <option value="Diesel">Diesel</option>
+         <option value="Electric">Electric</option>
+         <option value="Hybrid">Hybrid</option>
+      </select></br>
 
-         Type of Car<br>
-         <input type="text" name="type"><br>
+      <br>Type of Car:
+      <input type="text" name="type"></br>
 
-         Condition<br>
-         <select name="condition" id="condition">
-            <option value="New">New</option>
-            <option value="Used">Used</option>
-         </select> </br>
+      <br>Condition:
+      <select name="condition" id="condition">
+         <option value="New">New</option>
+         <option value="Used">Used</option>
+      </select> </br>
 
-         Price<br>
-         <input type="number" name="price"><br> 
+      <br>Price:
+      <input type="number" name="price"></br> 
 
-       <!--  Upload Picture<br>-->
-       <!--  <input type="file" accept="image/*"> <br> -->
+      <br><input type="submit" value="Submit"></br>
+   </form>
 
-      <!--   <input type="submit" value="Submit"><br> -->
-      </form>
+   {% with messages = get_flashed_messages(with_categories=true) %} 
+   {% if messages %} 
+       {% for category, message in messages %} 
+           {% if category == 'error' %}
+               <div class="alert alert-danger alert-dismissible fade show" role="alert">
+               {{ message }}
+               </div>
+   {% endif %} {% endfor %} {% endif %} {% endwith %}
+<a href="/">Home</a>
 
-      {% with messages = get_flashed_messages(with_categories=true) %} 
-      {% if messages %} 
-          {% for category, message in messages %} 
-              {% if category == 'error' %}
-                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  {{ message }}
-                  </div>
-      {% endif %} {% endfor %} {% endif %} {% endwith %}
-   <a href="/">Home</a>
-   
 </body></html>

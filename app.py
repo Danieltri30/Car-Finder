@@ -153,11 +153,20 @@ def addCar():
 @role_required('Employee')
 def deleteCar():
     if request.method == 'POST':
-        index = int(request.form['index'])
+        index = request.form['index']
         clist = fire.get_all_cars()
-        fire.delete_car(clist[index-1]['ID'])
-        clist = fire.get_all_cars()
-        return redirect(url_for('deleteCar', clist=clist))
+        
+        if index == '':
+            flash("Please enter a Car Number.", category='error')
+            return redirect(url_for('deleteCar', clist=clist))
+        elif int(index) < 1 or int(index) > len(clist):
+            flash("Invalid Car Number.", category='error')
+            return redirect(url_for('deleteCar', clist=clist))
+        else:
+            index = int(index)
+            fire.delete_car(clist[index-1]['ID'])
+            clist = fire.get_all_cars()
+            return redirect(url_for('deleteCar', clist=clist))
     else:
         clist = fire.get_all_cars()
         return render_template('deleteCar.html', clist=clist)
@@ -166,38 +175,47 @@ def deleteCar():
 @role_required('Employee')
 def updateCar():
     if request.method == 'POST':
-        index = int(request.form['index'])
+        index = request.form['index']
         attr = request.form['car_attribute']
         updates = request.form['toupdate']
         clist = fire.get_all_cars()
         
-        update = dict()
-        if attr == "make":
-            update['Make'] = updates
-        elif attr == "model":
-            update['Model'] = updates
-        elif attr == "year":
-            update['Year'] = updates
-        elif attr == "color":
-            update['Color'] = updates
-        elif attr == "mileage":
-            update['Mileage'] = updates
-        elif attr == "mpg":
-            update['MPG'] = updates
-        elif attr == "transmission":
-            update['Transmission'] = updates
-        elif attr == "fuel_type":
-            update['Fuel'] = updates
-        elif attr == "type":
-            update['Type'] = updates
-        elif attr == "noru":
-            update['NorU'] = updates
-        elif attr == "price":
-            update['Price'] = updates
         
-        fire.update_car(clist[index-1]['ID'], update)
-        clist = fire.get_all_cars()
-        return redirect(url_for('updateCar', clist=clist))
+        if index == '':
+            flash("Please enter a Car Number.", category='error')
+            return redirect(url_for('updateCar', clist=clist))
+        elif int(index) < 1 or int(index) > len(clist):
+            flash("Invalid Car Number.", category='error')
+            return redirect(url_for('updateCar', clist=clist))
+        else:
+            update = dict()
+            if attr == "make":
+                update['Make'] = updates
+            elif attr == "model":
+                update['Model'] = updates
+            elif attr == "year":
+                update['Year'] = updates
+            elif attr == "color":
+                update['Color'] = updates
+            elif attr == "mileage":
+                update['Mileage'] = updates
+            elif attr == "mpg":
+                update['MPG'] = updates
+            elif attr == "transmission":
+                update['Transmission'] = updates
+            elif attr == "fuel_type":
+                update['Fuel'] = updates
+            elif attr == "type":
+                update['Type'] = updates
+            elif attr == "noru":
+                update['NorU'] = updates
+            elif attr == "price":
+                update['Price'] = updates
+            index = int(index)
+            
+            fire.update_car(clist[index-1]['ID'], update)
+            clist = fire.get_all_cars()
+            return redirect(url_for('updateCar', clist=clist))
     else:
         clist = fire.get_all_cars()
         return render_template('updateCar.html', clist=clist)

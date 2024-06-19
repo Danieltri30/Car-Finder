@@ -16,6 +16,7 @@
         h3 {
             margin: 0;
             padding: 20px;
+            text-align: center
         }
 
         h1 {
@@ -23,6 +24,9 @@
             padding: 20px;
         }
 
+        br {
+            text-align: center
+        }
 
         label {
             margin: 5px 0;
@@ -40,7 +44,6 @@
         <thead>
             <tr>
                 <th>Car Number</th>
-               <!-- <th>Image</th>-->
                 <th>Make</th>
                 <th>Model</th>
                 <th>Year</th>
@@ -58,7 +61,6 @@
             {% for car in clist %}
             <tr>
                 <td>{{ loop.index }}</td>
-              <!--  <td><img src="{{ car.image_url }}" alt="{{ car['Model'] }}"></td>-->
                 <td>{{ car['Make'] }}</td>
                 <td>{{ car['Model'] }}</td>
                 <td>{{ car['Year'] }}</td>
@@ -73,73 +75,47 @@
             </tr>
             {% endfor %}
         </tbody>
+    </table>
 
+    <h3>Select Car Number to Update:</h3>
+    <form align="center" action="{{ url_for('updateCar') }}" method="POST">
 
-      <form action="{{ url_for('updateCar') }}" method="POST">
-         <h3>Select Car Number to Update:</h3>
-         Index:<br>
-         <input type ="number" name = "index"></input><br>
+        Index:<br>
+        <input type ="number" name = "index"></input><br>
 
+        <h3>Select Car Attribute to Update:</h3>
 
+        <br>
+            <label for="attr">Car Attribute:</label>
+            <select name="car_attribute" id="attr">
+                <option value="make">Make</option>
+                <option value="model">Model</option>
+                <option value="year">Year</option>
+                <option value="color">Color</option>
+                <option value="mileage">Mileage</option>
+                <option value="mpg">Miles per Gallon</option>
+                <option value="transmission">Transmission</option>
+                <option value="fuel">Fuel Type</option>
+                <option value="type">Body Style</option>
+                <option value="noru">Condition</option>
+                <option value="price">Price</option>
+            </select>
+        </br>
 
-    <h3>Select Car Attribute to Update:</h3>
+	    <br>New Value:
+         <input type ="text" name = "toupdate"></input></br>
 
-        <label>
-            <input type="radio" name="car_attribute" value="image" required>
-            Image
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="make">
-            Make
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="model">
-            Model
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="year">
-            Year
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="color">
-            Color
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="mileage">
-            Mileage
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="mpg">
-            Miles per Gallon
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="transmission">
-            Transmission
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="fuel_type">
-            Fuel Type
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="type">
-            Body Style
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="noru">
-            Condition
-        </label>
-        <label>
-            <input type="radio" name="car_attribute" value="price">
-            Price
-        </label>
+         <br><input type="submit" value="Submit"></br>
 
-	New Value:<br>
-         <input type ="text" name = "toupdate"></input><br>
-	<!--Image (only if button is clicked):<br>  this is lowkey terrible!!! -->
-	<!-- <input type="file" accept="image/*"> <br>-->
-
-         <input type="submit" value="Submit"><br>
-	    <a href="/">Home</a>  
-      </form>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %} 
+            {% for category, message in messages %} 
+                {% if category == 'error' %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+    <a href="/">Home</a>
 
 </body></html>
