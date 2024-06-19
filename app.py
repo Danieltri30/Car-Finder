@@ -244,6 +244,15 @@ def homepageEmployee():
         return render_template('homepageEmployee.html', user_role=user_role, clist=clist)
     else:
         return render_template('homepageEmployee.html', user_role=user_role)
+        
+#Gets role and returns them to their homepage
+@app.route('/homepage')
+def homepage():
+	user_role = session.get('user', {}).get('role')
+	if user_role == 'Employee':
+		return redirect(url_for('homepageEmployee'))
+	else:
+		return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(debug=True)
