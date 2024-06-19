@@ -81,10 +81,10 @@
     <div class="top">
       <div>CarFinder</div>
       <div class="links">
+        <div><a href="/" style="color: white;">Home</a></div>
         {% if user_role == 'Employee' %}
             <div><a href="/homepageEmployee" style="color: white">Dashboard</a></div>
         {% endif %}
-        <div><a href="/" style="color: white;">Home</a></div>
         <div><a href="/carsPosted" style="color: white;">Cars For Sale</a></div>
         {% if user_role %}
             <div><a href="/logout" style="color: white;">Logout</a></div>
@@ -97,55 +97,53 @@
       <div class="side"></div>
       <div class="middle">
         <div class="center">
+          <h1>Car Search</h1>
           <form id="carForm" action = "{{ url_for('index') }}" method = "POST">
-            <input type="checkbox" id="price" name="price" value="price">
-            <label for="price">Price</label>
-            <div id="priceField" class="noshow">
-              <input type="number" placeholder="Enter price" id="priceInput">
-            </div>
-            <br>
-            <input type="checkbox" id="model" name="model" value="model">
-            <label for="model">Model</label>
-            <div id="modelField" class="noshow">
-              <input type="text" placeholder="Enter model" id="modelInput">
-            </div>
-            <br>
-            <input type="checkbox" id="color" name="color" value="color">
-            <label for="color">Color</label>
-            <div id="colorField" class="noshow">
-              <input type="text" placeholder="Enter color" id="colorInput">
-            </div>
-            <br>
-            <input type="checkbox" id="miles" name="miles" value="miles">
-            <label for="miles">Miles Per Gallon</label>
-            <div id="milesField" class="noshow">
-              <input type="text" placeholder="Enter miles per gallon" id="milesInput">
-            </div>
-            <br>
-            <input type="checkbox" id="type" name="type" value="type">
-            <label for="type">Type of Car</label>
-            <div id="typeField" class="noshow">
-              <input type="text" placeholder="Enter type of car" id="typeInput">
-            </div>
-            <br>
-            <input type="checkbox" id="manufacturer" name="manufacturer" value="manufacturer">
-            <label for="manufacturer">Make</label>
-            <div id="manufacturerField" class="noshow">
-              <input type="text" placeholder="Enter manufacturer" id="manufacturerInput">
-            </div>
-            <br>
-            <label for="condition">Condition:</label>
-            <select name="condition" id="condition">
-              <option value="New">New</option>
-              <option value="Used">Used</option>
-            </select>
+            
+            <br>Make:
+            <input type="text" name="make"></br>
+
+            <br>Model:
+            <input type="text" name="model"></br>
+
+            <br>Year:
+            <select name="year" id="year">
+              <option value="1970 1980">1970 - 1980</option>
+              <option value="1980 1990">1980 - 1990</option>
+              <option value="1990 2000">1990 - 2000</option>
+              <option value="2000 2010">2000 - 2010</option>
+              <option value="2010 2020">2010 - 2020</option>
+              <option value="2020+">2020+</option>
+            </select></br>
+
+            <br>Color:
+            <input type="text" name="color"></br>
+
+            <br>Mileage:
+            <select name="mileage" id="mileage">
+              <option value="0 25">0 - 25,000</option>
+              <option value="25 50">25,000 - 50,000</option>
+              <option value="50 75">50,000 - 75,000</option>
+              <option value="75 100">75,000 - 100,000</option>
+              <option value="100+">100,000+</option>
+            </select></br>
+
+            <br>Miles per Gallon:
+            <select name="mpg" id="mpg">
+              <option value="0 15">0 - 15</option>
+              <option value="15 25">15 - 25</option>
+              <option value="25 35">25 - 35</option>
+              <option value="35+">35+</option>
+            </select></br>
+
             <br>
             <label for="transmission">Transmission Type:</label>
             <select name="transmission" id="transmission">
               <option value="Automatic">Automatic</option>
               <option value="Manual">Manual</option>
               <option value="Hybrid">Hybrid</option>
-            </select>
+            </select></br>
+
             <br>
             <label for="fuel">Fuel Type:</label>
             <select name="fuel" id="fuel">
@@ -153,10 +151,30 @@
               <option value="Diesel">Diesel</option>
               <option value="Electric">Electric</option>
               <option value="Hybrid">Hybrid</option>
-            </select>
+            </select></br>
+
+            <br>Body Style:
+            <input type="text" name="type"></br>
+
             <br>
-            <input type="submit" value="Submit">
+            <label for="condition">Condition:</label>
+            <select name="condition" id="condition">
+              <option value="New">New</option>
+              <option value="Used">Used</option>
+            </select></br>
+
+            <br>Price:
+            <select name="price" id="price">
+              <option value="0 50">0 - 50,000</option>
+              <option value="50 75">50,000 - 75,000</option>
+              <option value="75 100">75,000 - 100,000</option>
+              <option value="100 125">100,000 - 125,000</option>
+              <option value="125+">125,000+</option>
+            </select></br>
+
             <br>
+              <input type="submit" value="Submit">
+            </br>
           </form>
         </div>
         <div id="results">

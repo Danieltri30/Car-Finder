@@ -18,48 +18,49 @@
     	color: white;
     	padding: 10px;
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
     }
+
+	.links {
+		display: flex;
+		gap: 10px;
+	}
     
     .side {
-    	flex: 0 0 auto;
-    	background-color: grey;
-    	padding: 10px;
-		flex-direction: column;
-    }
-
-    .middle {
-    	flex: 1; 
-    	background-color:  white;
-    	padding: 10px;
-    }
+		flex: 0 0 100px;
+		background-color: grey;
+		padding: 10px;
+		min-height: 100vh;
+	}
+  
+	.middle {
+		flex: 1;
+		background-color: white;
+		padding: 10px;
+		min-height: 100vh;
+	}
     
     body {
     	margin: 0;
-    font-family: Arial, sans-serif;
+    	font-family: Arial, sans-serif;
     }
 
 	.center{
-    	position: fixed;
 		height: 200px;
-		width: 400px;
+		width: 100%;
 		top: 30%;
 		left: 35%;
-		transform: translate(-50%, -50%);
 		text-align: center;
 	}
 
 	.centerform{
-		width: 100%;
-		left: 50%;
-    	position: fixed;
+		left: 45%;
 		text-align: center;
 	}
 	
 	.centertable{
-    	position: fixed;
-		margin-top: 350px;
+		margin-top: 31px;
 		text-align: center;
 	}
 
@@ -80,113 +81,146 @@
 	results {
 		margin-top: 350px;
 	}
+
   </style>
 </head>
 
 <body>
   <div class="container">
-    <div class="top">CarFinder</div>
+		<div class="top">CarFinder
+			<div class="links">
+				<div><a href="/" style="color: white;">Home</a></div>
+				<div><a href = "/carsPosted" style="color: white;">Cars For Sale</a></div>
+				<div><a href = "/addCar" style="color: white;">Add a Car</a></div>
+				<div><a href = "/updateCar" style="color: white;">Update a Car</a></div>
+				<div><a href = "/deleteCar" style="color: white;">Remove a car</a></div>
+			</div>
+		</div>
     <div style="display: flex;">
-      <div class="side"></div>
-      <div class="middle">
-	<div class = "center">
-		<div class = "centerform">
-			<form action = "{{ url_for('homepageEmployee') }}" method = "POST">
-				<input type = "checkbox" id = "price" name = "price" value = "price">
-				<label for = "price">Price </label>
-				<br>
-				<input type = "checkbox" id = "model" name = "model" value = "model">
-				<label for = "model">Model </label>
-				<br>
-				<input type = "checkbox" id = "color" name = "color" value = "color">
-				<label for = "color">Color </label>
-				<br>
-				<input type = "checkbox" id = "miles" name = "miles" value = "miles">
-				<label for = "miles">Miles Per Gallon </label>
-				<br>
-				<input type = "checkbox" id = "type" name = "type" value = "type">
-				<label for = "type"> Type of Car </label>
-				<br>
-
-				<input type = "checkbox" id = "manufacturer" name = "manufacturer" value = "manufacturer">
-				<label for = "manufacturer">Make</label>
-
-				<br>
-				<label for = "condition">Condition:</label>
-					<select name = "condition" id = "condition">
-					<option value = "New">New </option>
-					<option value = "Used">Used</option>
-					</select>
-				<br>
-				<label for = "transmission">Transmission Type:</label>
-					<select name = "transmission" id = "transmission">
-					<option value = "Automatic">Automatic</option>
-					<option value = "Manual">Manual</option>
-					<option value = "Hybrid">Hybrid</option>
-					</select>
-				<br>
-				<label for = "fuel"> Fuel Type: </label>
-					<select name = "fuel" id = "fuel">
-					<option value = "Gasoline">Gasoline</option>
-					<option value = "Diesel">Diesel</option>
-					<option value = "Electric">Electric</option>
-					<option value = "Hybrid">Hybrid</option>
-					</select>
-				<br>
-
-				<input type = "submit" value = "Submit">
-				<br>			
-			</form>
+      	<div class="side"></div>
+      	<div class="middle">
+			<div class = "center">
+				<div class = "centerform">
+					<h1>Car Search</h1>
+					<form id="carForm" action = "{{ url_for('index') }}" method = "POST">
+					
+					<br>Make:
+					<input type="text" name="make"></br>
+		
+					<br>Model:
+					<input type="text" name="model"></br>
+		
+					<br>Year:
+					<select name="year" id="year">
+						<option value="1970 1980">1970 - 1980</option>
+						<option value="1980 1990">1980 - 1990</option>
+						<option value="1990 2000">1990 - 2000</option>
+						<option value="2000 2010">2000 - 2010</option>
+						<option value="2010 2020">2010 - 2020</option>
+						<option value="2020+">2020+</option>
+					</select></br>
+		
+					<br>Color:
+					<input type="text" name="color"></br>
+		
+					<br>Mileage:
+					<select name="mileage" id="mileage">
+						<option value="0 25">0 - 25,000</option>
+						<option value="25 50">25,000 - 50,000</option>
+						<option value="50 75">50,000 - 75,000</option>
+						<option value="75 100">75,000 - 100,000</option>
+						<option value="100+">100,000+</option>
+					</select></br>
+		
+					<br>Miles per Gallon:
+					<select name="mpg" id="mpg">
+						<option value="0 15">0 - 15</option>
+						<option value="15 25">15 - 25</option>
+						<option value="25 35">25 - 35</option>
+						<option value="35+">35+</option>
+					</select></br>
+		
+					<br>
+					<label for="transmission">Transmission Type:</label>
+					<select name="transmission" id="transmission">
+						<option value="Automatic">Automatic</option>
+						<option value="Manual">Manual</option>
+						<option value="Hybrid">Hybrid</option>
+					</select></br>
+		
+					<br>
+					<label for="fuel">Fuel Type:</label>
+					<select name="fuel" id="fuel">
+						<option value="Gasoline">Gasoline</option>
+						<option value="Diesel">Diesel</option>
+						<option value="Electric">Electric</option>
+						<option value="Hybrid">Hybrid</option>
+					</select></br>
+		
+					<br>Body Style:
+					<input type="text" name="type"></br>
+		
+					<br>
+					<label for="condition">Condition:</label>
+					<select name="condition" id="condition">
+						<option value="New">New</option>
+						<option value="Used">Used</option>
+					</select></br>
+		
+					<br>Price:
+					<select name="price" id="price">
+						<option value="0 50">0 - 50,000</option>
+						<option value="50 75">50,000 - 75,000</option>
+						<option value="75 100">75,000 - 100,000</option>
+						<option value="100 125">100,000 - 125,000</option>
+						<option value="125+">125,000+</option>
+					</select></br>
+		
+					<br>
+						<input type="submit" value="Submit">
+					</br>
+					</form>
+				</div>
+				<div class="centertable">
+					<table id="resultsTable">
+						<thead>
+						<tr>
+							<th>Make</th>
+							<th>Model</th>
+							<th>Year</th>
+							<th>Color</th>
+							<th>Mileage</th>
+							<th>MPG</th>
+							<th>Transmission</th>
+							<th>Fuel</th>
+							<th>Type</th>
+							<th>Condition</th>
+							<th>Price</th>
+						</tr>
+						</thead>
+						<tbody id="carsList">
+						{% for car in clist %}
+						<tr>
+							<td>{{ car['Make'] }}</td>
+							<td>{{ car['Model'] }}</td>
+							<td>{{ car['Year'] }}</td>
+							<td>{{ car['Color'] }}</td>
+							<td>{{ car['Mileage'] }}</td>
+							<td>{{ car['MPG'] }}</td>
+							<td>{{ car['Transmission'] }}</td>
+							<td>{{ car['Fuel'] }}</td>
+							<td>{{ car['Type'] }}</td>
+							<td>{{ car['NorU'] }}</td>
+							<td>{{ car['Price'] }}</td>
+						</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-		<div class="centertable">
-			<table id="resultsTable">
-				<thead>
-				<tr>
-					<th>Make</th>
-					<th>Model</th>
-					<th>Year</th>
-					<th>Color</th>
-					<th>Mileage</th>
-					<th>MPG</th>
-					<th>Transmission</th>
-					<th>Fuel</th>
-					<th>Type</th>
-					<th>Condition</th>
-					<th>Price</th>
-				</tr>
-				</thead>
-				<tbody id="carsList">
-				{% for car in clist %}
-				<tr>
-					<td>{{ car['Make'] }}</td>
-					<td>{{ car['Model'] }}</td>
-					<td>{{ car['Year'] }}</td>
-					<td>{{ car['Color'] }}</td>
-					<td>{{ car['Mileage'] }}</td>
-					<td>{{ car['MPG'] }}</td>
-					<td>{{ car['Transmission'] }}</td>
-					<td>{{ car['Fuel'] }}</td>
-					<td>{{ car['Type'] }}</td>
-					<td>{{ car['NorU'] }}</td>
-					<td>{{ car['Price'] }}</td>
-				</tr>
-				{% endfor %}
-				</tbody>
-			</table>
-		</div>
+		<div class="side"></div>
 	</div>
-	
-
 </div>
-    <div class = "side"><a href="/">Home</a></div>
-    <div class = "side"><a href = "/carsPosted">Cars For Sale</a></div>
-	<div class = "side"><a href = "/addCar">Add a Car</a></div>
-	<div class = "side"><a href = "/updateCar">Update a Car</a></div>
-	<div class = "side"><a href = "/deleteCar">Remove a car</a></div>
-    {% if user_role %}
-    <div class="side"><a href="/logout">Logout</a></div>
-    {% endif %}
-    </div>
-  </div>
 </body>
 </html>
