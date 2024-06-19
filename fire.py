@@ -134,18 +134,47 @@ def get_all_users():
         return uList       # Return the list of dicts containing the all cars and their data
     else:
         print("Error: No users within the database.")
-        
-def filter_cars(make, model, year, color, mileage, mpg, transmission, fueltype, bodystyle, noru, price):
+
+def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, fuel, bstyle, cond, price_range):
     db_cursor = db.collection('Cars')  # Get a reference to every document in the Cars table
 
-    cond_filt = FieldFilter('NorU', '==', noru)     # First run individual filters on the supplied fields
-    tran_filt = FieldFilter('Transmission', '==', transmission)
-    fuel_filt = FieldFilter('Fuel', '==', fueltype)
+    # filter cars into cars list
+    make_filter = FieldFilter("Make", "==",  make)
+    model_filter = FieldFilter("Model", "==", model)
+    year_low_filter = FieldFilter("Year", ">=", year_range[0])
+    year_high_filter = FieldFilter("Year", "<=", year_range[1])
+    color_filter = FieldFilter("Color", "==", color)
+    mileage_low_filter = FieldFilter("Mileage", ">=", mileage_range[0])
+    mileage_high_filter = FieldFilter("Mileage", "<=", mileage_range[1])
+    mpg_low_filter = FieldFilter("MPG", ">=", mpg_range[0])
+    mpg_high_filter = FieldFilter("MPG", "<=", mpg_range[1])
+    trans_filter = FieldFilter("Transmission", "==", tran)
+    fuel_filter = FieldFilter("Fuel", "==", fuel)
+    type_filter = FieldFilter("Type", "==", bstyle)
+    cond_filter = FieldFilter("NorU", "==", cond)
+    price_low_filter = FieldFilter("Price", ">=", price_range[0])
+    price_high_filter = FieldFilter("Price", "<=", price_range[1])
 
-    master_filt = And(filters=[cond_filt, tran_filt, fuel_filt])  # Aggregate them together with an AND filter
+    filters_list = []
+    if make != "": filters_list.append(make_filter)
+    if model != "": filters_list.append(model_filter)
+    # filters_list.append(year_low_filter)
+    # filters_list.append(year_high_filter)
+    if color != "": filters_list.append(color_filter)
+    # filters_list.append(mileage_low_filter)
+    # filters_list.append(mileage_high_filter)
+    # filters_list.append(mpg_low_filter)
+    # filters_list.append(mpg_high_filter)
+    filters_list.append(trans_filter)
+    filters_list.append(fuel_filter)
+    if bstyle != "": filters_list.append(type_filter)
+    filters_list.append(cond_filter)
+    # filters_list.append(price_low_filter)
+    # filters_list.append(price_high_filter)
     
-    # Run the query on that aggregate filter, and stream it to get the filtered cars
-    cars = db_cursor.where(filter=master_filt).stream()    
+    master_filter = And(filters=filters_list)
+    cars = db_cursor.where(filter=master_filter).stream()
+
     car_list = []
     for c in cars:
         car = c.to_dict()
@@ -153,4 +182,6 @@ def filter_cars(make, model, year, color, mileage, mpg, transmission, fueltype, 
         car_list.append(car)
     # Returned the results of the query to the front end page as a list of cars with the filter parameters
     return car_list
+
 #END OF CRUD CODE FOR THE LIST OF CARS DATABASE
+
