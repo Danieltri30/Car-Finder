@@ -209,6 +209,7 @@ def filter_cars(make, model, year_range, color, mileage_range, mpg_range, tran, 
         car = c.to_dict()
         car['ID'] = c.id
         car_list.append(car)
+    return car_list
     # Returned the results of the query to the front end page as a list of cars with the filter parameters
 
 #END OF CRUD CODE FOR THE LIST OF CARS DATABASE
