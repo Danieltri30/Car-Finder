@@ -17,7 +17,7 @@
    ###
    Problem Statement:
    - To create a database for both users and car database managers to efficiently search for vehicles depending on particular attributes, with certain Role Based Access Control.
-   - 
+     
    ###
    How to compile & run project:
    - In the project's directory, using the command line, run
@@ -42,7 +42,7 @@
 
    ###
    Other Instructions:
-   While creating an account, we made sure to check that the email is a valid email and that the password is atleast 5 chars
+   While creating an account, we made sure to check that the email is a valid email and that the password is at least 6 chars
 
 
 
